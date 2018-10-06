@@ -102,8 +102,20 @@ public class DAO {
   /**
    * Get information from the database
    */
-  public static ArrayList<String> select() {
+  public static ArrayList<String> select(String tablename, ArrayList<String> colSelect, String whereCol, String whereVal) {
     ArrayList<String> collection = new ArrayList<>();
+    PreparedStatement preparedStatement;
+    String columnList = "";
+    for(String col : colSelect) {
+      columnList+=col+",";
+    }
+    try {
+      // SELECT col1, col2 FROM tablename WHERE col3 = val;
+      preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + tablename + " WHERE " + whereCol + " = ?;");
+      preparedStatement.setString(1, whereVal);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return collection;
   }
 
