@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -16,7 +19,7 @@ public class DAO {
   private static Connection connection;
 
   /**
-   *
+   * Accesses information from db.properties to instantiate a database connection
    * @return the database connection
    */
   public static Connection getConnection() {
@@ -41,5 +44,57 @@ public class DAO {
     }
 
   }
+
+  /**
+   * Create new entry in the database
+   * @param tablename is the name of table which data is inserting into
+   * @param insertVals Map where first index is the column, second index is the value
+   */
+  public static void insert(String tablename, Map<String, String> insertVals) {
+    String columnList = "";
+    String valueList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, String> entry : insertVals.entrySet()) {
+      columnList += entry.getKey()+", ";
+      valueList  += "?,";
+    }
+
+    try {
+      // INSERT into tablename (col1, col2) VALUES (?, ?);
+      preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + "(" + columnList + ") VALUES (" + valueList + ");");
+      int i = 0;
+      for(Map.Entry<String, String> entry : insertVals.entrySet()) {
+        preparedStatement.setString(i, entry.getValue());
+        i++;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   *
+   * @param tablename
+   * @param updateVals
+   * @param colCheck
+   * @param valCheck
+   */
+  public static void update(String tablename, Map<String, String> updateVals, String colCheck, String valCheck) {
+    try {
+      // UPDATE tablename SET col1 = ?, col2 = ? WHERE col3 = ?
+      connection.prepareStatement("");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Get information from the database
+   */
+  public static ArrayList<String> select() {
+    ArrayList<String> collection = new ArrayList<>();
+    return collection;
+  }
+
 
 }
