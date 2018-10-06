@@ -62,7 +62,7 @@ public class DAO {
     try {
       // INSERT into tablename (col1, col2) VALUES (?, ?);
       preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + "(" + columnList + ") VALUES (" + valueList + ");");
-      int i = 0;
+      int i = 1;
       for(Map.Entry<String, String> entry : insertVals.entrySet()) {
         preparedStatement.setString(i, entry.getValue());
         i++;
@@ -80,9 +80,20 @@ public class DAO {
    * @param valCheck
    */
   public static void update(String tablename, Map<String, String> updateVals, String colCheck, String valCheck) {
+    String updateList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, String> entry : updateVals.entrySet()){
+      updateList+=entry.getKey()+" = ?,";
+    }
     try {
       // UPDATE tablename SET col1 = ?, col2 = ? WHERE col3 = ?
-      connection.prepareStatement("");
+      preparedStatement = connection.prepareStatement("UPDATE " + tablename + " SET " + updateList + " WHERE " + colCheck +" = ?;");
+      int i = 1;
+      for(Map.Entry<String, String> entry : updateVals.entrySet()){
+        preparedStatement.setString(i, entry.getValue());
+        i++;
+      }
+      preparedStatement.setString(i, valCheck);
     } catch (SQLException e) {
       e.printStackTrace();
     }
