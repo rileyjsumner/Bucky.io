@@ -1,4 +1,4 @@
-**Bucky.io**
+**Bucky.com.io**
 
-Bucky.io is a java based programming library built to develop java based applications easier.
+Bucky.com.io is a java based programming library built to develop java based applications easier.
 

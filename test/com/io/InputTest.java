@@ -1,4 +1,4 @@
-package io;
+package com.io;
 
 public class InputTest {
 }

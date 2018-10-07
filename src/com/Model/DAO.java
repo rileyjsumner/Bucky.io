@@ -1,4 +1,4 @@
-package Model;
+package com.Model;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +42,7 @@ public class DAO {
   }
 
   /**
-   * Create new entry in the database
+   * Create new entry in the database, inserts String text
    * @param tablename is the name of table which data is inserting into
    * @param insertVals Map where first index is the column, second index is the value
    */
@@ -69,9 +69,10 @@ public class DAO {
   }
 
   /**
-   *
-   * @param tablename
-   * @param insertVals
+   * Creates a new entry in the database of type Int
+   * @param tablename name of table to be manipulated
+   * @param insertVals Map of <String,Integer> where the String is the column name,
+   * Integers are the values to be inserted
    */
   public static void insertInt(String tablename, Map<String, Integer> insertVals) {
     String columnList = "";
@@ -95,6 +96,11 @@ public class DAO {
     }
   }
 
+  /**
+   * Creates a decimal entry in the database
+   * @param tablename name of the table to be manipulated
+   * @param insertVals
+   */
   public static void insertDouble(String tablename, Map<String, Double> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -239,5 +245,4 @@ public class DAO {
     }
     return collection;
   }
-
 }
