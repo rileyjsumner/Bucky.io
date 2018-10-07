@@ -16,16 +16,15 @@ import java.util.Properties;
  * Will be used to manipulate and get information from the DB
  */
 public class DAO {
-  private static Connection connection;
+  public static Connection connection;
+  private static String inputType;
 
   /**
-   * Accesses information from db.properties to instantiate a database connection
-   * @return the database connection
+   * Accesses information from db.properties to instantiate a database connection.
+   * When a DAO object is created, creates a public instance of the db.
+   * For custom commands, {@code this.connection} can be used to write SQL
    */
-  public static Connection getConnection() {
-    if (connection != null)
-      return connection;
-    else {
+  public DAO() {
       try {
         Properties prop = new Properties();
         InputStream inputStream = DAO.class.getClassLoader().getResourceAsStream("/db.properties");
@@ -40,8 +39,6 @@ public class DAO {
       } catch (ClassNotFoundException | SQLException | IOException e) {
         e.printStackTrace();
       }
-      return connection;
-    }
 
   }
 
@@ -73,8 +70,8 @@ public class DAO {
   }
 
   /**
-   *
-   * @param tablename
+   * Update method for the database
+   * @param tablename table to update
    * @param updateVals
    * @param colCheck
    * @param valCheck
@@ -106,8 +103,9 @@ public class DAO {
     ArrayList<String> collection = new ArrayList<>();
     PreparedStatement preparedStatement;
     String columnList = "";
+
     for(String col : colSelect) {
-      columnList+=col+",";
+      columnList+=col.toString() + ((colSelect.indexOf(col) != colSelect.size()) ? ",":"");
     }
     try {
       // SELECT col1, col2 FROM tablename WHERE col3 = val;
