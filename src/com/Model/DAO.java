@@ -16,7 +16,6 @@ import java.util.Properties;
  */
 public class DAO {
   public static Connection connection;
-  private static String inputType;
 
   /**
    * Accesses information from db.properties to instantiate a database connection.
