@@ -7,7 +7,7 @@ public class ModelTest {
     DAO db = new DAO();
     HashMap<String, String> insertVals = new HashMap<>();
     insertVals.put("username", "myuser");
-    insertVals.put("passowrd", "mypass");
+    insertVals.put("password", "mypass");
     db.insertStr("test", insertVals);
   }
 }

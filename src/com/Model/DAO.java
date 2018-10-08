@@ -2,11 +2,9 @@ package com.Model;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -50,18 +48,23 @@ public class DAO {
     String valueList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, String> entry : insertVals.entrySet()) {
-      columnList += entry.getKey()+", ";
+      columnList += entry.getKey()+",";
       valueList  += "?,";
     }
+    columnList = columnList.substring(0,columnList.length()-1);
+    valueList = valueList.substring(0,valueList.length()-1);
 
     try {
       // INSERT into tablename (col1, col2) VALUES (?, ?);
-      preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + "(" + columnList + ") VALUES (" + valueList + ");");
+      System.out.println("INSERT INTO " + tablename + " (" + columnList + ") VALUES (" + valueList + ");");
+      preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + " (" + columnList + ") VALUES (" + valueList + ");");
       int i = 1;
       for(Map.Entry<String, String> entry : insertVals.entrySet()) {
+        System.out.println(entry.getValue());
         preparedStatement.setString(i, entry.getValue());
         i++;
       }
+      preparedStatement.execute();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -81,15 +84,18 @@ public class DAO {
       columnList += entry.getKey()+", ";
       valueList  += "?,";
     }
+    columnList = columnList.substring(0,columnList.length()-1);
+    valueList = valueList.substring(0,valueList.length()-1);
 
     try {
       // INSERT into tablename (col1, col2) VALUES (?, ?);
-      preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + "(" + columnList + ") VALUES (" + valueList + ");");
+      preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + " (" + columnList + ") VALUES (" + valueList + ");");
       int i = 1;
       for(Map.Entry<String, Integer> entry : insertVals.entrySet()) {
         preparedStatement.setInt(i, entry.getValue());
         i++;
       }
+      preparedStatement.execute();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -108,15 +114,18 @@ public class DAO {
       columnList += entry.getKey()+", ";
       valueList  += "?,";
     }
+    columnList = columnList.substring(0,columnList.length()-1);
+    valueList = valueList.substring(0,valueList.length()-1);
 
     try {
       // INSERT into tablename (col1, col2) VALUES (?, ?);
-      preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + "(" + columnList + ") VALUES (" + valueList + ");");
+      preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + " (" + columnList + ") VALUES (" + valueList + ");");
       int i = 1;
       for(Map.Entry<String, Double> entry : insertVals.entrySet()) {
         preparedStatement.setDouble(i, entry.getValue());
         i++;
       }
+      preparedStatement.execute();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -135,6 +144,7 @@ public class DAO {
     for(Map.Entry<String, String> entry : updateVals.entrySet()){
       updateList+=entry.getKey()+" = ?,";
     }
+    updateList = updateList.substring(0,updateList.length()-1);
     try {
       // UPDATE tablename SET col1 = ?, col2 = ? WHERE col3 = ?
       preparedStatement = connection.prepareStatement("UPDATE " + tablename + " SET " + updateList + " WHERE " + colCheck +" = ?;");
@@ -143,6 +153,7 @@ public class DAO {
         preparedStatement.setString(i, entry.getValue());
         i++;
       }
+      preparedStatement.execute();
       preparedStatement.setString(i, valCheck);
     } catch (SQLException e) {
       e.printStackTrace();
@@ -155,6 +166,8 @@ public class DAO {
     for(Map.Entry<String, Integer> entry : updateVals.entrySet()){
       updateList+=entry.getKey()+" = ?,";
     }
+    updateList = updateList.substring(0,updateList.length()-1);
+
     try {
       // UPDATE tablename SET col1 = ?, col2 = ? WHERE col3 = ?
       preparedStatement = connection.prepareStatement("UPDATE " + tablename + " SET " + updateList + " WHERE " + colCheck +" = ?;");
@@ -164,6 +177,7 @@ public class DAO {
         i++;
       }
       preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -175,6 +189,7 @@ public class DAO {
     for(Map.Entry<String, Double> entry : updateVals.entrySet()){
       updateList+=entry.getKey()+" = ?,";
     }
+    updateList = updateList.substring(0,updateList.length()-1);
     try {
       // UPDATE tablename SET col1 = ?, col2 = ? WHERE col3 = ?
       preparedStatement = connection.prepareStatement("UPDATE " + tablename + " SET " + updateList + " WHERE " + colCheck +" = ?;");
@@ -184,6 +199,7 @@ public class DAO {
         i++;
       }
       preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -198,12 +214,14 @@ public class DAO {
     String columnList = "";
 
     for(String col : colSelect) {
-      columnList+=col.toString() + ((colSelect.indexOf(col) != colSelect.size()) ? ",":"");
+      columnList+=col.toString() + ",";
     }
+    columnList = columnList.substring(0,columnList.length()-1);
     try {
       // SELECT col1, col2 FROM tablename WHERE col3 = val;
       preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + tablename + " WHERE " + whereCol + " = ?;");
       preparedStatement.setString(1, whereVal);
+      ResultSet resultSet = preparedStatement.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -216,12 +234,14 @@ public class DAO {
     String columnList = "";
 
     for(int col : colSelect) {
-      columnList+=col + ((colSelect.indexOf(col) != colSelect.size()) ? ",":"");
+      columnList+=col +",";
     }
+    columnList = columnList.substring(0,columnList.length()-1);
     try {
       // SELECT col1, col2 FROM tablename WHERE col3 = val;
       preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + tablename + " WHERE " + whereCol + " = ?;");
       preparedStatement.setString(1, whereVal);
+      ResultSet resultSet = preparedStatement.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -233,12 +253,14 @@ public class DAO {
     String columnList = "";
 
     for(Double col : colSelect) {
-      columnList+=col.toString() + ((colSelect.indexOf(col) != colSelect.size()) ? ",":"");
+      columnList+=col.toString() + ",";
     }
+    columnList = columnList.substring(0,columnList.length()-1);
     try {
       // SELECT col1, col2 FROM tablename WHERE col3 = val;
       preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + tablename + " WHERE " + whereCol + " = ?;");
       preparedStatement.setString(1, whereVal);
+      ResultSet resultSet = preparedStatement.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
     }
