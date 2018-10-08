@@ -25,7 +25,7 @@ public class DAO {
   public DAO() {
       try {
         Properties prop = new Properties();
-        InputStream inputStream = DAO.class.getClassLoader().getResourceAsStream("/db.properties");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db.properties");
         prop.load(inputStream);
         // Get the properties from db.properties file
         String driver = prop.getProperty("driver");
