@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -207,52 +206,14 @@ public class DAO {
 
   /**
    * Get information from the database
+   * @return collection of values retrieved from database
    */
-  public static ArrayList<String> selectStr(String tablename, ArrayList<String> colSelect, String whereCol, String whereVal) {
+  public static ArrayList<String> select(String tablename, ArrayList<String> colSelect, String whereCol, String whereVal) {
     ArrayList<String> collection = new ArrayList<>();
     PreparedStatement preparedStatement;
     String columnList = "";
 
     for(String col : colSelect) {
-      columnList+=col.toString() + ",";
-    }
-    columnList = columnList.substring(0,columnList.length()-1);
-    try {
-      // SELECT col1, col2 FROM tablename WHERE col3 = val;
-      preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + tablename + " WHERE " + whereCol + " = ?;");
-      preparedStatement.setString(1, whereVal);
-      ResultSet resultSet = preparedStatement.executeQuery();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return collection;
-  }
-
-  public static ArrayList<Integer> selectInt(String tablename, ArrayList<Integer> colSelect, String whereCol, String whereVal) {
-    ArrayList<Integer> collection = new ArrayList<>();
-    PreparedStatement preparedStatement;
-    String columnList = "";
-
-    for(int col : colSelect) {
-      columnList+=col +",";
-    }
-    columnList = columnList.substring(0,columnList.length()-1);
-    try {
-      // SELECT col1, col2 FROM tablename WHERE col3 = val;
-      preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + tablename + " WHERE " + whereCol + " = ?;");
-      preparedStatement.setString(1, whereVal);
-      ResultSet resultSet = preparedStatement.executeQuery();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return collection;
-  }
-  public static ArrayList<String> selectDouble(String tablename, ArrayList<Double> colSelect, String whereCol, String whereVal) {
-    ArrayList<String> collection = new ArrayList<>();
-    PreparedStatement preparedStatement;
-    String columnList = "";
-
-    for(Double col : colSelect) {
       columnList+=col.toString() + ",";
     }
     columnList = columnList.substring(0,columnList.length()-1);
