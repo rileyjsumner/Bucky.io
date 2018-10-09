@@ -42,7 +42,7 @@ public class DAO {
    * @param tablename is the name of table which data is inserting into
    * @param insertVals Map where first index is the column, second index is the value
    */
-  public static void insertStr(String tablename, Map<String, String> insertVals) {
+  public static boolean insertStr(String tablename, Map<String, String> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
@@ -55,7 +55,6 @@ public class DAO {
 
     try {
       // INSERT into tablename (col1, col2) VALUES (?, ?);
-      System.out.println("INSERT INTO " + tablename + " (" + columnList + ") VALUES (" + valueList + ");");
       preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + " (" + columnList + ") VALUES (" + valueList + ");");
       int i = 1;
       for(Map.Entry<String, String> entry : insertVals.entrySet()) {
@@ -63,10 +62,12 @@ public class DAO {
         preparedStatement.setString(i, entry.getValue());
         i++;
       }
-      preparedStatement.execute();
+      return preparedStatement.execute();
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    return false;
   }
 
   /**
@@ -75,7 +76,7 @@ public class DAO {
    * @param insertVals Map of <String,Integer> where the String is the column name,
    * Integers are the values to be inserted
    */
-  public static void insertInt(String tablename, Map<String, Integer> insertVals) {
+  public static boolean insertInt(String tablename, Map<String, Integer> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
@@ -94,10 +95,12 @@ public class DAO {
         preparedStatement.setInt(i, entry.getValue());
         i++;
       }
-      preparedStatement.execute();
+      return preparedStatement.execute();
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    return false;
   }
 
   /**
@@ -105,7 +108,7 @@ public class DAO {
    * @param tablename name of the table to be manipulated
    * @param insertVals
    */
-  public static void insertDouble(String tablename, Map<String, Double> insertVals) {
+  public static boolean insertDouble(String tablename, Map<String, Double> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
@@ -124,10 +127,12 @@ public class DAO {
         preparedStatement.setDouble(i, entry.getValue());
         i++;
       }
-      preparedStatement.execute();
+      return preparedStatement.execute();
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    return false;
   }
 
   /**
@@ -137,7 +142,7 @@ public class DAO {
    * @param colCheck
    * @param valCheck
    */
-  public static void updateStr(String tablename, Map<String, String> updateVals, String colCheck, String valCheck) {
+  public static boolean updateStr(String tablename, Map<String, String> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, String> entry : updateVals.entrySet()){
@@ -152,14 +157,16 @@ public class DAO {
         preparedStatement.setString(i, entry.getValue());
         i++;
       }
-      preparedStatement.execute();
       preparedStatement.setString(i, valCheck);
+      return preparedStatement.execute();
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    return false;
   }
 
-  public static void updateInt(String tablename, Map<String, Integer> updateVals, String colCheck, String valCheck) {
+  public static boolean updateInt(String tablename, Map<String, Integer> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Integer> entry : updateVals.entrySet()){
@@ -176,13 +183,15 @@ public class DAO {
         i++;
       }
       preparedStatement.setString(i, valCheck);
-      preparedStatement.execute();
+      return preparedStatement.execute();
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    return false;
   }
 
-  public static void updateDouble(String tablename, Map<String, Double> updateVals, String colCheck, String valCheck) {
+  public static boolean updateDouble(String tablename, Map<String, Double> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Double> entry : updateVals.entrySet()){
@@ -198,10 +207,12 @@ public class DAO {
         i++;
       }
       preparedStatement.setString(i, valCheck);
-      preparedStatement.execute();
+      return preparedStatement.execute();
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    return false;
   }
 
   /**
