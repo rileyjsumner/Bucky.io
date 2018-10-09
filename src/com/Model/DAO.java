@@ -58,11 +58,11 @@ public class DAO {
       preparedStatement = connection.prepareStatement("INSERT INTO " + tablename + " (" + columnList + ") VALUES (" + valueList + ");");
       int i = 1;
       for(Map.Entry<String, String> entry : insertVals.entrySet()) {
-        System.out.println(entry.getValue());
         preparedStatement.setString(i, entry.getValue());
         i++;
       }
-      return preparedStatement.execute();
+      preparedStatement.execute();
+      return true;
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -95,7 +95,8 @@ public class DAO {
         preparedStatement.setInt(i, entry.getValue());
         i++;
       }
-      return preparedStatement.execute();
+      preparedStatement.execute();
+      return true;
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -127,7 +128,8 @@ public class DAO {
         preparedStatement.setDouble(i, entry.getValue());
         i++;
       }
-      return preparedStatement.execute();
+      preparedStatement.execute();
+      return true;
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -158,7 +160,8 @@ public class DAO {
         i++;
       }
       preparedStatement.setString(i, valCheck);
-      return preparedStatement.execute();
+      preparedStatement.execute();
+      return true;
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -183,7 +186,8 @@ public class DAO {
         i++;
       }
       preparedStatement.setString(i, valCheck);
-      return preparedStatement.execute();
+      preparedStatement.execute();
+      return true;
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -207,7 +211,8 @@ public class DAO {
         i++;
       }
       preparedStatement.setString(i, valCheck);
-      return preparedStatement.execute();
+      preparedStatement.execute();
+      return true;
 
     } catch (SQLException e) {
       e.printStackTrace();
