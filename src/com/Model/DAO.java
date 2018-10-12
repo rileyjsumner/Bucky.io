@@ -47,11 +47,11 @@ public class DAO {
     String valueList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, String> entry : insertVals.entrySet()) {
-      columnList += entry.getKey()+",";
-      valueList  += "?,";
+      columnList = columnList.concat(entry.getKey()+",");
+      valueList  = valueList.concat("?,");
     }
     columnList = columnList.substring(0,columnList.length()-1);
-    valueList = valueList.substring(0,valueList.length()-1);
+    valueList  = valueList.substring(0,valueList.length()-1);
 
     try {
       // INSERT into tablename (col1, col2) VALUES (?, ?);
@@ -81,11 +81,11 @@ public class DAO {
     String valueList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Integer> entry : insertVals.entrySet()) {
-      columnList += entry.getKey()+", ";
-      valueList  += "?,";
+      columnList = columnList.concat(entry.getKey()+", ");
+      valueList  = valueList.concat("?,");
     }
     columnList = columnList.substring(0,columnList.length()-1);
-    valueList = valueList.substring(0,valueList.length()-1);
+    valueList  = valueList.substring(0,valueList.length()-1);
 
     try {
       // INSERT into tablename (col1, col2) VALUES (?, ?);
@@ -107,18 +107,18 @@ public class DAO {
   /**
    * Creates a decimal entry in the database
    * @param tablename name of the table to be manipulated
-   * @param insertVals
+   * @param insertVals values to insert into the database
    */
   public static boolean insertDouble(String tablename, Map<String, Double> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Double> entry : insertVals.entrySet()) {
-      columnList += entry.getKey()+", ";
-      valueList  += "?,";
+      columnList = columnList.concat(entry.getKey()+", ");
+      valueList  = valueList.concat("?,");
     }
     columnList = columnList.substring(0,columnList.length()-1);
-    valueList = valueList.substring(0,valueList.length()-1);
+    valueList  = valueList.substring(0,valueList.length()-1);
 
     try {
       // INSERT into tablename (col1, col2) VALUES (?, ?);
@@ -140,15 +140,16 @@ public class DAO {
   /**
    * Update method for the database
    * @param tablename table to update
-   * @param updateVals
-   * @param colCheck
-   * @param valCheck
+   * @param updateVals values to be updated in the database
+   * @param colCheck WHERE clause of SQL, column to compare equality
+   * @param valCheck WHERE clause of SQL, value which colCheck should equal
+   * @return boolean if statement was executed
    */
   public static boolean updateStr(String tablename, Map<String, String> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, String> entry : updateVals.entrySet()){
-      updateList+=entry.getKey()+" = ?,";
+      updateList = updateList.concat(entry.getKey()+" = ?,");
     }
     updateList = updateList.substring(0,updateList.length()-1);
     try {
@@ -169,11 +170,19 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Update method for integers to update in the database
+   * @param tablename table that should be updated
+   * @param updateVals Map of columns and values which should be updated
+   * @param colCheck WHERE clause of SQL, column to check equality
+   * @param valCheck WHERE clause of SQL, where value is equal to colCheck
+   * @return boolean if SQL was successfully executed
+   */
   public static boolean updateInt(String tablename, Map<String, Integer> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Integer> entry : updateVals.entrySet()){
-      updateList+=entry.getKey()+" = ?,";
+      updateList = updateList.concat(entry.getKey()+" = ?,");
     }
     updateList = updateList.substring(0,updateList.length()-1);
 
@@ -195,11 +204,19 @@ public class DAO {
     return false;
   }
 
+  /**
+   *
+   * @param tablename
+   * @param updateVals
+   * @param colCheck
+   * @param valCheck
+   * @return
+   */
   public static boolean updateDouble(String tablename, Map<String, Double> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Double> entry : updateVals.entrySet()){
-      updateList+=entry.getKey()+" = ?,";
+      updateList = updateList.concat(entry.getKey()+" = ?,");
     }
     updateList = updateList.substring(0,updateList.length()-1);
     try {
@@ -230,7 +247,7 @@ public class DAO {
     String columnList = "";
 
     for(String col : colSelect) {
-      columnList+=col.toString() + ",";
+      columnList = columnList.concat(col + ",");
     }
     columnList = columnList.substring(0,columnList.length()-1);
     try {

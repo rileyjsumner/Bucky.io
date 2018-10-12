@@ -1,12 +1,14 @@
 package com.Model;
 
-import com.mysql.jdbc.exceptions.MySQLSyntaxErrorException;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
 
 public class DAOTest {
+  /**
+   *
+   */
   @Test
   public void testInsertStrWithColumnNotExisting() {
     DAO testDao = new DAO();
@@ -16,6 +18,10 @@ public class DAOTest {
     insertTest.put("pass", "password");
     Assert.assertEquals(false, testDao.insertStr(TABLE_NAME, insertTest));
   }
+
+  /**
+   * 
+   */
   @Test
   public void testInsertStrWithUserAndPasswordValidStrings() {
     DAO testDao = new DAO();
