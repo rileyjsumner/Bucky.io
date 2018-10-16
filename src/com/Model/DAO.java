@@ -245,8 +245,8 @@ public class DAO {
    * Get information from the database
    * @return collection of values retrieved from database
    */
-  public static ArrayList<String> select(String tablename, ArrayList<String> colSelect, String whereCol, String whereVal) {
-    ArrayList<String> collection = new ArrayList<>();
+  public static ResultSet select(String tablename, ArrayList<String> colSelect, String whereCol, String whereVal) {
+    ResultSet resultSet = null;
     PreparedStatement preparedStatement;
     String columnList = "";
 
@@ -258,10 +258,10 @@ public class DAO {
       // SELECT col1, col2 FROM tablename WHERE col3 = val;
       preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + tablename + " WHERE " + whereCol + " = ?;");
       preparedStatement.setString(1, whereVal);
-      ResultSet resultSet = preparedStatement.executeQuery();
+      resultSet = preparedStatement.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return collection;
+    return resultSet;
   }
 }
