@@ -3,6 +3,7 @@ package com.Model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DAOTest {
@@ -18,10 +19,10 @@ public class DAOTest {
    */
   @Test
   public void testInsertStrWithColumnNotExisting() {
-    DAO testDao = new DAO();
+    DAO testDAO = new DAO();
     HashMap<String, String> insertTest = new HashMap<>();
     insertTest.put("failStr", "fail");
-    Assert.assertEquals(false, testDao.insertStr(TABLE_NAME, insertTest));
+    Assert.assertEquals(false, testDAO.insertStr(TABLE_NAME, insertTest));
   }
 
   /**
@@ -29,10 +30,10 @@ public class DAOTest {
    */
   @Test
   public void testInsertStrWithValidString() {
-    DAO testDao = new DAO();
+    DAO testDAO = new DAO();
     HashMap<String, String> insertTest = new HashMap<>();
     insertTest.put("stringTest", "valid");
-    Assert.assertEquals(true, testDao.insertStr(TABLE_NAME, insertTest));
+    Assert.assertEquals(true, testDAO.insertStr(TABLE_NAME, insertTest));
   }
 
   @Test
@@ -97,5 +98,15 @@ public class DAOTest {
     Assert.assertEquals(true, testDAO.updateStr(TABLE_NAME, insertTest, colCheck, valCheck));
   }
 
+
+  @Test
+  public void testSelectWithValidData() {
+    DAO testDAO = new DAO();
+    ArrayList<String> colSelect = new ArrayList<>();
+    colSelect.add("stringTest");
+    String whereCol = "integerTest";
+    String whereVal = "7";
+    Assert.assertEquals(true, testDAO.select(TABLE_NAME, colSelect, whereCol, whereVal));
+  }
 
 }
