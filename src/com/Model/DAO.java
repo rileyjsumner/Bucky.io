@@ -2,11 +2,7 @@ package com.Model;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
@@ -15,7 +11,7 @@ import java.util.Properties;
  *
  * Will be used to manipulate and get information from the DB
  */
-public class DAO {
+public class DAO implements SetupDAO {
   public static Connection connection;
 
   /**
@@ -85,7 +81,7 @@ public class DAO {
     String valueList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Integer> entry : insertVals.entrySet()) {
-      columnList = columnList.concat(entry.getKey()+", ");
+      columnList = columnList.concat(entry.getKey()+",");
       valueList  = valueList.concat("?,");
     }
     columnList = columnList.substring(0,columnList.length()-1);
@@ -118,7 +114,7 @@ public class DAO {
     String valueList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Double> entry : insertVals.entrySet()) {
-      columnList = columnList.concat(entry.getKey()+", ");
+      columnList = columnList.concat(entry.getKey()+",");
       valueList  = valueList.concat("?,");
     }
     columnList = columnList.substring(0,columnList.length()-1);
