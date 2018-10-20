@@ -13,6 +13,5 @@ public class ImplementationDAO extends DAO {
 
     DAO myDAO = new DAO();
     myDAO.updateStr("table", new HashMap<>(), "col", "val");
-      System.out.print("ffffffffffffffffffff");
   }
 }

@@ -260,4 +260,7 @@ public class DAO implements SetupDAO {
     }
     return resultSet;
   }
+  public boolean delete(String tablename, ArrayList<String> deleteCol, String whereCol, String whereVal) {
+    return false;
+  }
 }
