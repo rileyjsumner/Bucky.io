@@ -274,4 +274,7 @@ public class DAO implements SetupDAO {
     }
     return false;
   }
+  public boolean clearTable(String tablename) {
+    return this.delete(tablename, "", "1");
+  }
 }

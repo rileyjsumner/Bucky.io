@@ -14,4 +14,5 @@ public interface SetupDAO {
   public boolean updateDouble(String tablename, Map<String, Double> updateVals, String colCheck, String valCheck);
   public ResultSet select(String tablename, ArrayList<String> colSelect, String whereCol, String whereVal);
   public boolean delete(String tablename, String whereCol, String whereVal);
+  public boolean clearTable(String tablename);
 }

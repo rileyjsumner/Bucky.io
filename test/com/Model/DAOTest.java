@@ -38,6 +38,11 @@ public class DAOTest {
     String whereVal = "1";
     Assert.assertEquals(true, testDAO.delete(TABLE_NAME, whereCol, whereVal));
   }
+
+  @Test
+  public void testClearTable() {
+    Assert.assertEquals(true, testDAO.clearTable(TABLE_NAME));
+  }
   /**
    *
    */
