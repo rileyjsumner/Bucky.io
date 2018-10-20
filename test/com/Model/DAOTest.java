@@ -19,12 +19,24 @@ public class DAOTest {
   private DAO testDAO = new DAO();
 
   @Test
-  public void deleteInvalidColumnFromTable() {
-     ArrayList<String> deleteTest = new ArrayList<>();
-     deleteTest.add("deleteFail");
-     String whereCol = "stringTest";
+  public void testDeleteInvalidColumnFromTable() {
+     String whereCol = "failTest";
      String whereVal = "updateString";
-     Assert.assertEquals(false, testDAO.delete(TABLE_NAME, deleteTest, whereCol, whereVal));
+     Assert.assertEquals(false, testDAO.delete(TABLE_NAME, whereCol, whereVal));
+  }
+
+  @Test
+  public void testDeleteValidColumnFromTable() {
+    String whereCol = "integerTest";
+    String whereVal = "7";
+    Assert.assertEquals(true, testDAO.delete(TABLE_NAME, whereCol, whereVal));
+  }
+
+  @Test
+  public void testDeleteAllFromTable() {
+    String whereCol = "";
+    String whereVal = "1";
+    Assert.assertEquals(true, testDAO.delete(TABLE_NAME, whereCol, whereVal));
   }
   /**
    *

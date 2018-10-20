@@ -260,7 +260,18 @@ public class DAO implements SetupDAO {
     }
     return resultSet;
   }
-  public boolean delete(String tablename, ArrayList<String> deleteCol, String whereCol, String whereVal) {
+  public boolean delete(String tablename, String whereCol, String whereVal) {
+    PreparedStatement preparedStatement;
+
+    try {
+      // DELETE col1, col2 FROM tablename WHERE col3 = val;
+      preparedStatement = connection.prepareStatement("DELETE FROM " + tablename + " WHERE " + ((whereCol.equals(""))?"":whereCol+" = ") + "?;");
+      preparedStatement.setString(1, whereVal);
+      preparedStatement.execute();
+      return true;
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
     return false;
   }
 }
