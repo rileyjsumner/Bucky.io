@@ -46,7 +46,7 @@ public class DAO {
    * @param tablename is the name of table which data is inserting into
    * @param insertVals Map where first index is the column, second index is the value
    */
-  public static boolean insertStr(String tablename, Map<String, String> insertVals) {
+  public boolean insertStr(String tablename, Map<String, String> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
@@ -80,7 +80,7 @@ public class DAO {
    * @param insertVals Map of <String,Integer> where the String is the column name,
    * Integers are the values to be inserted
    */
-  public static boolean insertInt(String tablename, Map<String, Integer> insertVals) {
+  public boolean insertInt(String tablename, Map<String, Integer> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
@@ -113,7 +113,7 @@ public class DAO {
    * @param tablename name of the table to be manipulated
    * @param insertVals values to insert into the database
    */
-  public static boolean insertDouble(String tablename, Map<String, Double> insertVals) {
+  public boolean insertDouble(String tablename, Map<String, Double> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
@@ -149,7 +149,7 @@ public class DAO {
    * @param valCheck WHERE clause of SQL, value which colCheck should equal
    * @return boolean if statement was executed
    */
-  public static boolean updateStr(String tablename, Map<String, String> updateVals, String colCheck, String valCheck) {
+  public boolean updateStr(String tablename, Map<String, String> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, String> entry : updateVals.entrySet()){
@@ -182,7 +182,7 @@ public class DAO {
    * @param valCheck WHERE clause of SQL, where value is equal to colCheck
    * @return boolean if SQL was successfully executed
    */
-  public static boolean updateInt(String tablename, Map<String, Integer> updateVals, String colCheck, String valCheck) {
+  public boolean updateInt(String tablename, Map<String, Integer> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Integer> entry : updateVals.entrySet()){
@@ -209,14 +209,14 @@ public class DAO {
   }
 
   /**
-   *
-   * @param tablename
-   * @param updateVals
-   * @param colCheck
-   * @param valCheck
-   * @return
+   * Update method for doubles to be updated in the database
+   * @param tablename table to update
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
    */
-  public static boolean updateDouble(String tablename, Map<String, Double> updateVals, String colCheck, String valCheck) {
+  public boolean updateDouble(String tablename, Map<String, Double> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
     for(Map.Entry<String, Double> entry : updateVals.entrySet()){
@@ -245,7 +245,7 @@ public class DAO {
    * Get information from the database
    * @return collection of values retrieved from database
    */
-  public static ResultSet select(String tablename, ArrayList<String> colSelect, String whereCol, String whereVal) {
+  public ResultSet select(String tablename, ArrayList<String> colSelect, String whereCol, String whereVal) {
     ResultSet resultSet = null;
     PreparedStatement preparedStatement;
     String columnList = "";
