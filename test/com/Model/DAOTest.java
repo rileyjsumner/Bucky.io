@@ -118,13 +118,48 @@ public class DAOTest {
     Assert.assertEquals(true, testDAO.updateStr(TABLE_NAME, updateTest, colCheck, valCheck));
   }
 
+  @Test
+  public void testUpdateIntWithCheckColumnNotExist() {
+    HashMap<String, Integer> updateTest = new HashMap<>();
+    updateTest.put("integerTest", 14);
+    String colCheck = "failInt";
+    String valCheck = "7";
+    Assert.assertEquals(false, testDAO.updateInt(TABLE_NAME, updateTest, colCheck, valCheck));
+  }
+
+  @Test
+  public void testUpdateIntWithValidInt() {
+    HashMap<String, Integer> updateTest = new HashMap<>();
+    updateTest.put("integerTest", 17);
+    String colCheck = "stringTest";
+    String valCheck = "updateString";
+    Assert.assertEquals(true, testDAO.updateInt(TABLE_NAME, updateTest, colCheck, valCheck));
+  }
+
+  @Test
+  public void testUpdateDoubleWithCheckColumnNotExist() {
+    HashMap<String, Double> updateTest = new HashMap<>();
+    updateTest.put("doubleTest", 4.02);
+    String colCheck = "failDouble";
+    String valCheck = "3.12";
+    Assert.assertEquals(false, testDAO.updateDouble(TABLE_NAME, updateTest, colCheck, valCheck));
+  }
+
+  @Test
+  public void testUpdateDoubleWithValidDouble() {
+    HashMap<String, Double> updateTest = new HashMap<>();
+    updateTest.put("doubleTest", 3.14);
+    String colCheck = "integerTest";
+    String valCheck = "17";
+    Assert.assertEquals(true, testDAO.updateDouble(TABLE_NAME, updateTest, colCheck, valCheck));
+  }
 
   @Test
   public void testSelectWithValidData() {
     ArrayList<String> colSelect = new ArrayList<>();
     colSelect.add("stringTest");
     String whereCol = "integerTest";
-    String whereVal = "7";
+    String whereVal = "17";
     ResultSet testResult = testDAO.select(TABLE_NAME, colSelect, whereCol, whereVal);
     String selectVal;
     try {
