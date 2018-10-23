@@ -2,7 +2,6 @@ package com.Model;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -173,5 +172,4 @@ public class DAOTest {
     }
     Assert.assertEquals("updateString", selectVal);
   }
-
 }
