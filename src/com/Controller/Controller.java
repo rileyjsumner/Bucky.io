@@ -8,5 +8,7 @@ import javax.servlet.http.HttpServlet;
 public class Controller extends HttpServlet {
   // Get Request dispatcher
   // Send redirect
+  // get parameter
+  // set attribute
 
 }
