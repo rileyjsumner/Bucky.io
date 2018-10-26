@@ -12,7 +12,7 @@ public class DAOTest {
   // INSERT INTO table (col) VALUES (val);
   // UPDATE table SET col = val WHERE colcheck = valcheck;
   // DELETE col FROM table WHERE colcheck = valcheck;
-  // SELECT col FROM table WHERE colcheck = valcheck;
+  // SELECT col FROM tabERE colcheck = valcheck;
 
   private final String TABLE_NAME = "test";
   private DAO testDAO = new DAO();
