@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
-
+// TODO make tablename private field
 /**
  *
  * Will be used to manipulate and get information from the DB
