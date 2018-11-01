@@ -11,15 +11,37 @@ public class Validate extends Input {
    * @param prompt prompt to ask user for input
    * @return boolean if value falls in range
    */
-  public boolean validIntInRange(int min, int max, String prompt) {
+  public int validIntInRange(int min, int max, String prompt, String errorPrompt) {
     int val = readInt(prompt);
-    return (val >= min && val <= max);
+    if(val >= min && val <= max) {
+      return val;
+    } else {
+      System.out.println(errorPrompt);
+      validIntInRange(min, max, prompt, errorPrompt);
+    }
+    return -1;
   }
-  public boolean validDoubleInRange(double min, double max, String prompt) {
+  public double validDoubleInRange(double min, double max, String prompt, String errorPrompt) {
     double val = readDouble(prompt);
-    return (val >= min && val <= max);
+    if(val >= min && val <= max) {
+      return val;
+    } else {
+      System.out.println(errorPrompt);
+      validDoubleInRange(min, max, prompt, errorPrompt);
+    }
+    return -1.0;
   }
   // validate str has length
+  public String valideStrLength(int min, int max, String prompt, String errorPrompt) {
+    String input = readStr(prompt);
+    if(input.length() >= min && input.length() <= max) {
+      return input;
+    } else {
+      System.out.println(errorPrompt);
+      valideStrLength(min, max, prompt, errorPrompt);
+    }
+    return "";
+  }
   // validate method to ask for user prompt again
   // handle input mismatch
 }
