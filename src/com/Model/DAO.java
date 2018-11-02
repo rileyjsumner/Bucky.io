@@ -11,7 +11,7 @@ import java.util.Properties;
  *
  * Will be used to manipulate and get information from the DB
  */
-public class DAO implements SetupDAO {
+public class DAO {
   public static Connection connection;
   private String table_name;
 
@@ -55,7 +55,7 @@ public class DAO implements SetupDAO {
     valueList  = valueList.substring(0,valueList.length()-1);
 
     try {
-      // INSERT into table_name (col1, col2) VALUES (?, ?);
+      // INSERT into table_name (col1, 11111111111123123123123123123123123123123121col2) VALUES (?, ?);
       preparedStatement = connection.prepareStatement("INSERT INTO " + table_name + " (" + columnList + ") VALUES (" + valueList + ");");
       int i = 1;
       for(Map.Entry<String, String> entry : insertVals.entrySet()) {
@@ -287,33 +287,6 @@ public class DAO implements SetupDAO {
       int i = 1;
       for(Map.Entry<String, Byte> entry : insertVals.entrySet()) {
         preparedStatement.setByte(i, entry.getValue());
-        i++;
-      }
-      preparedStatement.execute();
-      return true;
-
-    } catch(SQLException e) {
-      e.printStackTrace();
-    }
-    return false;
-  }
-
-  public boolean insertBlob(Map<String, Blob> insertVals) {
-    String columnList = "";
-    String valueList = "";
-    PreparedStatement preparedStatement;
-    for(Map.Entry<String, Blob> entry : insertVals.entrySet()) {
-      columnList = columnList.concat(entry.getKey()+",");
-      valueList = valueList.concat("?,");
-    }
-    columnList = columnList.substring(0, columnList.length()-1);
-    valueList = valueList.substring(0, valueList.length()-1);
-
-    try {
-      preparedStatement  = connection.prepareStatement("INSERT INTO " + table_name + " ( " + columnList + ") VALUES (" + valueList + ");");
-      int i = 1;
-      for(Map.Entry<String, Blob> entry : insertVals.entrySet()) {
-        preparedStatement.setBlob(i, entry.getValue());
         i++;
       }
       preparedStatement.execute();
