@@ -15,32 +15,32 @@ public class DAOTest {
   // SELECT col FROM tabERE colcheck = valcheck;
 
   private final String TABLE_NAME = "test";
-  private DAO testDAO = new DAO();
+  private DAO testDAO = new DAO(TABLE_NAME);
 
   @Test
   public void testDeleteInvalidColumnFromTable() {
      String whereCol = "failTest";
      String whereVal = "updateString";
-     Assert.assertEquals(false, testDAO.delete(TABLE_NAME, whereCol, whereVal));
+     Assert.assertEquals(false, testDAO.delete(whereCol, whereVal));
   }
 
   @Test
   public void testDeleteValidColumnFromTable() {
     String whereCol = "integerTest";
     String whereVal = "7";
-    Assert.assertEquals(true, testDAO.delete(TABLE_NAME, whereCol, whereVal));
+    Assert.assertEquals(true, testDAO.delete(whereCol, whereVal));
   }
 
   @Test
   public void testDeleteAllFromTable() {
     String whereCol = "";
     String whereVal = "1";
-    Assert.assertEquals(true, testDAO.delete(TABLE_NAME, whereCol, whereVal));
+    Assert.assertEquals(true, testDAO.delete(whereCol, whereVal));
   }
 
   @Test
   public void testClearTable() {
-    Assert.assertEquals(true, testDAO.clearTable(TABLE_NAME));
+    Assert.assertEquals(true, testDAO.clearTable());
   }
   /**
    *
@@ -49,7 +49,7 @@ public class DAOTest {
   public void testInsertStrWithColumnNotExisting() {
     HashMap<String, String> insertTest = new HashMap<>();
     insertTest.put("failStr", "fail");
-    Assert.assertEquals(false, testDAO.insertStr(TABLE_NAME, insertTest));
+    Assert.assertEquals(false, testDAO.insertStr(insertTest));
   }
 
   /**
@@ -59,35 +59,35 @@ public class DAOTest {
   public void testInsertStrWithValidString() {
     HashMap<String, String> insertTest = new HashMap<>();
     insertTest.put("stringTest", "valid");
-    Assert.assertEquals(true, testDAO.insertStr(TABLE_NAME, insertTest));
+    Assert.assertEquals(true, testDAO.insertStr(insertTest));
   }
 
   @Test
   public void testInsertIntWithColumnNotExisting() {
     HashMap<String, Integer> insertTest = new HashMap<>();
     insertTest.put("failInt", 12);
-    Assert.assertEquals(false, testDAO.insertInt(TABLE_NAME, insertTest));
+    Assert.assertEquals(false, testDAO.insertInt(insertTest));
   }
 
   @Test
   public void testInsertIntWithValidInteger(){
     HashMap<String, Integer> insertTest = new HashMap<>();
     insertTest.put("integerTest", 7);
-    Assert.assertEquals(true, testDAO.insertInt(TABLE_NAME, insertTest));
+    Assert.assertEquals(true, testDAO.insertInt(insertTest));
   }
 
   @Test
   public void testInsertDoubleWithColumnNotExisting(){
     HashMap<String, Double> insertTest = new HashMap<>();
     insertTest.put("failDouble", 0.9);
-    Assert.assertEquals(false, testDAO.insertDouble(TABLE_NAME, insertTest));
+    Assert.assertEquals(false, testDAO.insertDouble(insertTest));
   }
 
   @Test
   public void testInsertDoubleWithValidDouble(){
     HashMap<String, Double> insertTest = new HashMap<>();
     insertTest.put("doubleTest", 0.5);
-    Assert.assertEquals(true, testDAO.insertDouble(TABLE_NAME, insertTest));
+    Assert.assertEquals(true, testDAO.insertDouble(insertTest));
   }
 
   @Test
@@ -96,7 +96,7 @@ public class DAOTest {
     updateTest.put("failStr", "updateString");
     String colCheck = "integerTest";
     String valCheck = "7";
-    Assert.assertEquals(false, testDAO.updateStr(TABLE_NAME, updateTest, colCheck, valCheck));
+    Assert.assertEquals(false, testDAO.updateStr(updateTest, colCheck, valCheck));
   }
 
   @Test
@@ -105,7 +105,7 @@ public class DAOTest {
     updateTest.put("stringTest", "updateString");
     String colCheck = "failInt";
     String valCheck = "7";
-    Assert.assertEquals(false, testDAO.updateStr(TABLE_NAME, updateTest, colCheck, valCheck));
+    Assert.assertEquals(false, testDAO.updateStr(updateTest, colCheck, valCheck));
   }
 
   @Test
@@ -114,7 +114,7 @@ public class DAOTest {
     updateTest.put("stringTest", "updateString");
     String colCheck = "integerTest";
     String valCheck = "7";
-    Assert.assertEquals(true, testDAO.updateStr(TABLE_NAME, updateTest, colCheck, valCheck));
+    Assert.assertEquals(true, testDAO.updateStr(updateTest, colCheck, valCheck));
   }
 
   @Test
@@ -123,7 +123,7 @@ public class DAOTest {
     updateTest.put("integerTest", 14);
     String colCheck = "failInt";
     String valCheck = "7";
-    Assert.assertEquals(false, testDAO.updateInt(TABLE_NAME, updateTest, colCheck, valCheck));
+    Assert.assertEquals(false, testDAO.updateInt(updateTest, colCheck, valCheck));
   }
 
   @Test
@@ -132,7 +132,7 @@ public class DAOTest {
     updateTest.put("integerTest", 17);
     String colCheck = "stringTest";
     String valCheck = "updateString";
-    Assert.assertEquals(true, testDAO.updateInt(TABLE_NAME, updateTest, colCheck, valCheck));
+    Assert.assertEquals(true, testDAO.updateInt(updateTest, colCheck, valCheck));
   }
 
   @Test
@@ -141,7 +141,7 @@ public class DAOTest {
     updateTest.put("doubleTest", 4.02);
     String colCheck = "failDouble";
     String valCheck = "3.12";
-    Assert.assertEquals(false, testDAO.updateDouble(TABLE_NAME, updateTest, colCheck, valCheck));
+    Assert.assertEquals(false, testDAO.updateDouble(updateTest, colCheck, valCheck));
   }
 
   @Test
@@ -150,7 +150,7 @@ public class DAOTest {
     updateTest.put("doubleTest", 3.14);
     String colCheck = "integerTest";
     String valCheck = "17";
-    Assert.assertEquals(true, testDAO.updateDouble(TABLE_NAME, updateTest, colCheck, valCheck));
+    Assert.assertEquals(true, testDAO.updateDouble(updateTest, colCheck, valCheck));
   }
 
   @Test
@@ -159,7 +159,7 @@ public class DAOTest {
     colSelect.add("stringTest");
     String whereCol = "integerTest";
     String whereVal = "17";
-    ResultSet testResult = testDAO.select(TABLE_NAME, colSelect, whereCol, whereVal);
+    ResultSet testResult = testDAO.select(colSelect, whereCol, whereVal);
     String selectVal;
     try {
       if(testResult.first()) {
