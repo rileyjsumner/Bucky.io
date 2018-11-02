@@ -100,7 +100,9 @@ public class DAOTest {
 
   @Test
   public void testInsertLongWithValidLong() {
-
+    HashMap<String, Long> insertTest = new HashMap<>();
+    insertTest.put("longTest", 2398423L);
+    Assert.assertEquals(true, testDAO.insertLong(insertTest));
   }
 
   @Test
@@ -112,7 +114,9 @@ public class DAOTest {
 
   @Test
   public void testInsertBooleanWithValidBoolean() {
-
+    HashMap<String, Boolean> insertTest = new HashMap<>();
+    insertTest.put("booleanTest", true);
+    Assert.assertEquals(true, testDAO.insertBoolean(insertTest));
   }
 
   @Test
@@ -124,7 +128,9 @@ public class DAOTest {
 
   @Test
   public void testInsertFloatWithValidFloat() {
-
+    HashMap<String, Float> insertTest = new HashMap<>();
+    insertTest.put("floatTest", 2.4F);
+    Assert.assertEquals(true, testDAO.insertFloat(insertTest));
   }
 
   @Test
@@ -136,7 +142,9 @@ public class DAOTest {
 
   @Test
   public void testInsertShortWithValidShort() {
-
+    HashMap<String, Short> insertTest = new HashMap<>();
+    insertTest.put("shortTest", (short)3);
+    Assert.assertEquals(true, testDAO.insertShort(insertTest));
   }
 
   @Test
@@ -148,19 +156,9 @@ public class DAOTest {
 
   @Test
   public void testInsertObjectWithValidObject() {
-
-  }
-
-  @Test
-  public void testInsertByteWithColumnNotExisting() {
-    HashMap<String, Byte> insertTest = new HashMap<>();
-    insertTest.put("failByte", (byte)9);
-    Assert.assertEquals(false, testDAO.insertByte(insertTest));
-  }
-
-  @Test
-  public void testInsertByteWithValidByte() {
-
+    HashMap<String, Double> insertTest = new HashMap<>();
+    insertTest.put("doubleTest", 0.5);
+    Assert.assertEquals(true, testDAO.insertDouble(insertTest));
   }
 
   @Test
@@ -172,7 +170,9 @@ public class DAOTest {
 
   @Test
   public void testInsertBigDecimalWithValidBigDecimal() {
-
+    HashMap<String, BigDecimal> insertTest = new HashMap<>();
+    insertTest.put("bigDecimalTest", new BigDecimal(30.523823));
+    Assert.assertEquals(true, testDAO.insertBigDecimal(insertTest));
   }
 
   @Test
@@ -184,7 +184,9 @@ public class DAOTest {
 
   @Test
   public void testInsertDateWithValidDate() {
-
+    HashMap<String, Date> insertTest = new HashMap<>();
+    insertTest.put("dateTest", new Date(2342323L));
+    Assert.assertEquals(true, testDAO.insertDate(insertTest));
   }
 
   @Test
@@ -196,19 +198,23 @@ public class DAOTest {
 
   @Test
   public void testInsertTimeWithValidTime() {
-
+    HashMap<String, Time> insertTest = new HashMap<>();
+    insertTest.put("timeTest", new Time(System.currentTimeMillis()));
+    Assert.assertEquals(true, testDAO.insertTime(insertTest));
   }
 
   @Test
   public void testInsertTimestampWithColumnNotExisting() {
     HashMap<String, Timestamp> insertTest = new HashMap<>();
     insertTest.put("failTimestamp", new Timestamp(1541193952L));
-    Assert.assertEquals(false, testDAO.insertTimeStamp(insertTest));
+    Assert.assertEquals(false, testDAO.insertTimestamp(insertTest));
   }
 
   @Test
   public void testInsertTimestampWithValidTimestamp() {
-
+    HashMap<String, Timestamp> insertTest = new HashMap<>();
+    insertTest.put("timestampTest", new Timestamp(2981720720L));
+    Assert.assertEquals(true, testDAO.insertTimestamp(insertTest));
   }
 
   @Test

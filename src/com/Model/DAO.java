@@ -271,33 +271,6 @@ public class DAO {
     return false;
   }
 
-  public boolean insertByte(Map<String, Byte> insertVals) {
-    String columnList = "";
-    String valueList = "";
-    PreparedStatement preparedStatement;
-    for(Map.Entry<String, Byte> entry : insertVals.entrySet()) {
-      columnList = columnList.concat(entry.getKey()+",");
-      valueList = valueList.concat("?,");
-    }
-    columnList = columnList.substring(0, columnList.length()-1);
-    valueList = valueList.substring(0, valueList.length()-1);
-
-    try {
-      preparedStatement  = connection.prepareStatement("INSERT INTO " + table_name + " ( " + columnList + ") VALUES (" + valueList + ");");
-      int i = 1;
-      for(Map.Entry<String, Byte> entry : insertVals.entrySet()) {
-        preparedStatement.setByte(i, entry.getValue());
-        i++;
-      }
-      preparedStatement.execute();
-      return true;
-
-    } catch(SQLException e) {
-      e.printStackTrace();
-    }
-    return false;
-  }
-
   public boolean insertBigDecimal(Map<String, BigDecimal> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -379,7 +352,7 @@ public class DAO {
     return false;
   }
 
-  public boolean insertTimeStamp(Map<String, Timestamp> insertVals) {
+  public boolean insertTimestamp(Map<String, Timestamp> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
