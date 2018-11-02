@@ -14,6 +14,13 @@ public class Input {
   }
 
   /**
+   * Accessor method for the class Scanner
+   * @return Scanner field
+   */
+  public Scanner scan() {
+    return in;
+  }
+  /**
    * Private helper method to print out a prompt queueing
    * user input
    * @param prompt Statement to ask user for input
