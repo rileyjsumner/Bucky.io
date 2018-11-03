@@ -135,7 +135,10 @@ public class DAO {
     }
     return false;
   }
-
+  /**
+   * Create new entry in the database, inserts Long value
+   * @param insertVals Map where first index is the column, second index is the value
+   */
   public boolean insertLong(Map<String, Long> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -163,6 +166,10 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Create new entry in the database, inserts Boolean value
+   * @param insertVals Map where first index is the column, second index is the value
+   */
   public boolean insertBoolean(Map<String, Boolean> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -190,6 +197,10 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Create new entry in the database, inserts Float value
+   * @param insertVals Map where first index is the column, second index is the value
+   */
   public boolean insertFloat(Map<String, Float> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -217,6 +228,10 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Create new entry in the database, inserts Short value
+   * @param insertVals Map where first index is the column, second index is the value
+   */
   public boolean insertShort(Map<String, Short> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -244,6 +259,10 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Create new entry in the database, inserts Object instance
+   * @param insertVals Map where first index is the column, second index is the value
+   */
   public boolean insertObject(Map<String, Object> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -271,6 +290,10 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Create new entry in the database, inserts Byte
+   * @param insertVals Map where first index is the column, second index is the value
+   */
   public boolean insertByte(Map<String, Byte> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -298,6 +321,10 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Create new entry in the database, inserts BigDecimal value
+   * @param insertVals Map where first index is the column, second index is the value
+   */
   public boolean insertBigDecimal(Map<String, BigDecimal> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -325,6 +352,10 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Create new entry in the database, inserts Date sql object
+   * @param insertVals Map where first index is the column, second index is the value
+   */
   public boolean insertDate(Map<String, Date> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -352,6 +383,10 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Create new entry in the database, inserts Time
+   * @param insertVals Map where first index is the column, second index is the value
+   */
   public boolean insertTime(Map<String, Time> insertVals) {
     String columnList = "";
     String valueList = "";
@@ -379,7 +414,11 @@ public class DAO {
     return false;
   }
 
-  public boolean insertTimeStamp(Map<String, Timestamp> insertVals) {
+  /**
+   * Create new entry in the database, inserts Timestamp
+   * @param insertVals Map where first index is the column, second index is the value
+   */
+  public boolean insertTimestamp(Map<String, Timestamp> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
@@ -503,6 +542,261 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Update method for longs to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
+  public boolean updateLong(Map<String, Long> updateVals, String colCheck, String valCheck) {
+    String updateList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, Long> entry : updateVals.entrySet()){
+      updateList = updateList.concat(entry.getKey()+" = ?,");
+    }
+    updateList = updateList.substring(0,updateList.length()-1);
+    try {
+      // UPDATE table_name SET col1 = ?, col2 = ? WHERE col3 = ?
+      preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + updateList + " WHERE " + colCheck +" = ?;");
+      int i = 1;
+      for(Map.Entry<String, Long> entry : updateVals.entrySet()){
+        preparedStatement.setLong(i, entry.getValue());
+        i++;
+      }
+      preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  /**
+   * Update method for booleans to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
+  public boolean updateBoolean(Map<String, Boolean> updateVals, String colCheck, String valCheck) {
+    String updateList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, Boolean> entry : updateVals.entrySet()){
+      updateList = updateList.concat(entry.getKey()+" = ?,");
+    }
+    updateList = updateList.substring(0,updateList.length()-1);
+    try {
+      // UPDATE table_name SET col1 = ?, col2 = ? WHERE col3 = ?
+      preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + updateList + " WHERE " + colCheck +" = ?;");
+      int i = 1;
+      for(Map.Entry<String, Boolean> entry : updateVals.entrySet()){
+        preparedStatement.setBoolean(i, entry.getValue());
+        i++;
+      }
+      preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  /**
+   * Update method for floats to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
+  public boolean updateFloat(Map<String, Float> updateVals, String colCheck, String valCheck) {
+    String updateList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, Float> entry : updateVals.entrySet()){
+      updateList = updateList.concat(entry.getKey()+" = ?,");
+    }
+    updateList = updateList.substring(0,updateList.length()-1);
+    try {
+      // UPDATE table_name SET col1 = ?, col2 = ? WHERE col3 = ?
+      preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + updateList + " WHERE " + colCheck +" = ?;");
+      int i = 1;
+      for(Map.Entry<String, Float> entry : updateVals.entrySet()){
+        preparedStatement.setFloat(i, entry.getValue());
+        i++;
+      }
+      preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  /**
+   * Update method for floats to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
+  public boolean updateShort(Map<String, Short> updateVals, String colCheck, String valCheck) {
+    String updateList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, Short> entry : updateVals.entrySet()){
+      updateList = updateList.concat(entry.getKey()+" = ?,");
+    }
+    updateList = updateList.substring(0,updateList.length()-1);
+    try {
+      // UPDATE table_name SET col1 = ?, col2 = ? WHERE col3 = ?
+      preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + updateList + " WHERE " + colCheck +" = ?;");
+      int i = 1;
+      for(Map.Entry<String, Short> entry : updateVals.entrySet()){
+        preparedStatement.setShort(i, entry.getValue());
+        i++;
+      }
+      preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  /**
+   * Update method for BigDecimals to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
+  public boolean updateBigDecimal(Map<String, BigDecimal> updateVals, String colCheck, String valCheck) {
+    String updateList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, BigDecimal> entry : updateVals.entrySet()){
+      updateList = updateList.concat(entry.getKey()+" = ?,");
+    }
+    updateList = updateList.substring(0,updateList.length()-1);
+    try {
+      // UPDATE table_name SET col1 = ?, col2 = ? WHERE col3 = ?
+      preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + updateList + " WHERE " + colCheck +" = ?;");
+      int i = 1;
+      for(Map.Entry<String, BigDecimal> entry : updateVals.entrySet()){
+        preparedStatement.setBigDecimal(i, entry.getValue());
+        i++;
+      }
+      preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  /**
+   * Update method for Dates to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
+  public boolean updateDate(Map<String, Date> updateVals, String colCheck, String valCheck) {
+    String updateList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, Date> entry : updateVals.entrySet()){
+      updateList = updateList.concat(entry.getKey()+" = ?,");
+    }
+    updateList = updateList.substring(0,updateList.length()-1);
+    try {
+      // UPDATE table_name SET col1 = ?, col2 = ? WHERE col3 = ?
+      preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + updateList + " WHERE " + colCheck +" = ?;");
+      int i = 1;
+      for(Map.Entry<String, Date> entry : updateVals.entrySet()){
+        preparedStatement.setDate(i, entry.getValue());
+        i++;
+      }
+      preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  /**
+   * Update method for Times to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
+  public boolean updateTime(Map<String, Time> updateVals, String colCheck, String valCheck) {
+    String updateList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, Time> entry : updateVals.entrySet()){
+      updateList = updateList.concat(entry.getKey()+" = ?,");
+    }
+    updateList = updateList.substring(0,updateList.length()-1);
+    try {
+      // UPDATE table_name SET col1 = ?, col2 = ? WHERE col3 = ?
+      preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + updateList + " WHERE " + colCheck +" = ?;");
+      int i = 1;
+      for(Map.Entry<String, Time> entry : updateVals.entrySet()){
+        preparedStatement.setTime(i, entry.getValue());
+        i++;
+      }
+      preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  /**
+   * Update method for Timestamp to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
+  public boolean updateTimestamp(Map<String, Timestamp> updateVals, String colCheck, String valCheck) {
+    String updateList = "";
+    PreparedStatement preparedStatement;
+    for(Map.Entry<String, Timestamp> entry : updateVals.entrySet()){
+      updateList = updateList.concat(entry.getKey()+" = ?,");
+    }
+    updateList = updateList.substring(0,updateList.length()-1);
+    try {
+      // UPDATE table_name SET col1 = ?, col2 = ? WHERE col3 = ?
+      preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + updateList + " WHERE " + colCheck +" = ?;");
+      int i = 1;
+      for(Map.Entry<String, Timestamp> entry : updateVals.entrySet()){
+        preparedStatement.setTimestamp(i, entry.getValue());
+        i++;
+      }
+      preparedStatement.setString(i, valCheck);
+      preparedStatement.execute();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
   /**
    * Get information from the database
    * @return collection of values retrieved from database

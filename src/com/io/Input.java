@@ -22,7 +22,7 @@ public class Input {
   }
   /**
    * Private helper method to print out a prompt queueing
-   * user input
+   * user input - add a \n for new line
    * @param prompt Statement to ask user for input
    */
   private void prompt(String prompt) {
