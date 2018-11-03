@@ -280,6 +280,150 @@ public class DAOTest {
     Assert.assertEquals(true, testDAO.updateDouble(updateTest, colCheck, valCheck));
   }
 
+    @Test
+    public void testUpdateLongWithCheckColumnNotExist() {
+        HashMap<String, Long> updateTest = new HashMap<>();
+        updateTest.put("longTest", 4L);
+        String colCheck = "failLong";
+        String valCheck = "3L";
+        Assert.assertEquals(false, testDAO.updateLong(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateLongWithValidLong() {
+        HashMap<String, Long> updateTest = new HashMap<>();
+        updateTest.put("longTest", 3L);
+        String colCheck = "integerTest";
+        String valCheck = "17";
+        Assert.assertEquals(true, testDAO.updateLong(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateBooleanWithCheckColumnNotExist() {
+        HashMap<String, Boolean> updateTest = new HashMap<>();
+        updateTest.put("booleanTest", true);
+        String colCheck = "failBoolean";
+        String valCheck = "true";
+        Assert.assertEquals(false, testDAO.updateBoolean(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateBooleanWithValidDouble() {
+        HashMap<String, Boolean> updateTest = new HashMap<>();
+        updateTest.put("doubleTest", true);
+        String colCheck = "integerTest";
+        String valCheck = "17";
+        Assert.assertEquals(true, testDAO.updateBoolean(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateFloatWithCheckColumnNotExist() {
+        HashMap<String, Float> updateTest = new HashMap<>();
+        updateTest.put("floatTest", .02F);
+        String colCheck = "failFloat";
+        String valCheck = ".02F";
+        Assert.assertEquals(false, testDAO.updateFloat(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateFloatWithValidDouble() {
+        HashMap<String, Float> updateTest = new HashMap<>();
+        updateTest.put("floatTest", .2F);
+        String colCheck = "integerTest";
+        String valCheck = "17";
+        Assert.assertEquals(true, testDAO.updateFloat(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateShortWithCheckColumnNotExist() {
+        HashMap<String, Short> updateTest = new HashMap<>();
+        updateTest.put("shortTest", (short)12);
+        String colCheck = "failShort";
+        String valCheck = "12";
+        Assert.assertEquals(false, testDAO.updateShort(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateShortWithValidDouble() {
+        HashMap<String, Short> updateTest = new HashMap<>();
+        updateTest.put("shortTest", (short)12);
+        String colCheck = "integerTest";
+        String valCheck = "17";
+        Assert.assertEquals(true, testDAO.updateShort(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateBigDecimalWithCheckColumnNotExist() {
+        HashMap<String, BigDecimal> updateTest = new HashMap<>();
+        updateTest.put("bigDecimalTest", new BigDecimal(.2));
+        String colCheck = "failBigDecimal";
+        String valCheck = ".2";
+        Assert.assertEquals(false, testDAO.updateBigDecimal(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateBigDecimalWithValidDouble() {
+        HashMap<String, BigDecimal> updateTest = new HashMap<>();
+        updateTest.put("bigDecimalTest", new BigDecimal(.2));
+        String colCheck = "integerTest";
+        String valCheck = "17";
+        Assert.assertEquals(true, testDAO.updateBigDecimal(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateDateWithCheckColumnNotExist() {
+        HashMap<String, Date> updateTest = new HashMap<>();
+        updateTest.put("dateTest", new Date(723462973L));
+        String colCheck = "failDate";
+        String valCheck = "12345678L";
+        Assert.assertEquals(false, testDAO.updateDate(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateDateWithValidDouble() {
+        HashMap<String, Date> updateTest = new HashMap<>();
+        updateTest.put("dateTest", new Date(45678L));
+        String colCheck = "integerTest";
+        String valCheck = "17";
+        Assert.assertEquals(true, testDAO.updateDate(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateTimeWithCheckColumnNotExist() {
+        HashMap<String, Time> updateTest = new HashMap<>();
+        updateTest.put("timeTest", new Time(1234567L));
+        String colCheck = "failTime";
+        String valCheck = "902485L";
+        Assert.assertEquals(false, testDAO.updateDTime(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateTimeWithValidDouble() {
+        HashMap<String, Time> updateTest = new HashMap<>();
+        updateTest.put("timeTest", new Time(187346918374L));
+        String colCheck = "integerTest";
+        String valCheck = "17";
+        Assert.assertEquals(true, testDAO.updateTime(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateDoubleWithCheckColumnNotExist() {
+        HashMap<String, Timestamp> updateTest = new HashMap<>();
+        updateTest.put("timestampTest", new Timestamp(29384583475L));
+        String colCheck = "failTimestamp";
+        String valCheck = "813401984L";
+        Assert.assertEquals(false, testDAO.updateTimestamp(updateTest, colCheck, valCheck));
+    }
+
+    @Test
+    public void testUpdateTimestampWithValidDouble() {
+        HashMap<String, Timestamp> updateTest = new HashMap<>();
+        updateTest.put("timestampTest", new Timestamp(12314L));
+        String colCheck = "integerTest";
+        String valCheck = "17";
+        Assert.assertEquals(true, testDAO.updateTimestamp(updateTest, colCheck, valCheck));
+    }
+
   @Test
   public void testSelectWithValidData() {
     ArrayList<String> colSelect = new ArrayList<>();
