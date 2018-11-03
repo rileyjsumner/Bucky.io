@@ -407,7 +407,7 @@ public class DAOTest {
     }
 
     @Test
-    public void testUpdateDoubleWithCheckColumnNotExist() {
+    public void testUpdateTimestampWithCheckColumnNotExist() {
         HashMap<String, Timestamp> updateTest = new HashMap<>();
         updateTest.put("timestampTest", new Timestamp(29384583475L));
         String colCheck = "failTimestamp";
