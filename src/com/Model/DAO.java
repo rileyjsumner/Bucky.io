@@ -418,7 +418,7 @@ public class DAO {
    * Create new entry in the database, inserts Timestamp
    * @param insertVals Map where first index is the column, second index is the value
    */
-  public boolean insertTimeStamp(Map<String, Timestamp> insertVals) {
+  public boolean insertTimestamp(Map<String, Timestamp> insertVals) {
     String columnList = "";
     String valueList = "";
     PreparedStatement preparedStatement;
