@@ -4,11 +4,15 @@ import java.util.HashMap;
 
 public class Bean {
   private HashMap<String, Object> fields;
-  public Bean() {
-    fields = new HashMap<>();
+  private final String title;
+
+  public Bean(String title) {
+    this.fields = new HashMap<>();
+    this.title = title;
   }
-  public Bean(HashMap<String, Object> fields) {
+  public Bean(HashMap<String, Object> fields, String title) {
     this.fields = fields;
+    this.title = title;
   }
   public void addField(String fieldName, Object fieldValue) {
     this.fields.put(fieldName, fieldValue);
