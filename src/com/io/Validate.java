@@ -17,9 +17,8 @@ public class Validate extends Input {
       return val;
     } else {
       System.out.println(errorPrompt);
-      validIntInRange(min, max, prompt, errorPrompt);
+      return validIntInRange(min, max, prompt, errorPrompt);
     }
-    return -1;
   }
   public double validDoubleInRange(double min, double max, String prompt, String errorPrompt) {
     double val = readDouble(prompt);
@@ -27,9 +26,8 @@ public class Validate extends Input {
       return val;
     } else {
       System.out.println(errorPrompt);
-      validDoubleInRange(min, max, prompt, errorPrompt);
+      return validDoubleInRange(min, max, prompt, errorPrompt);
     }
-    return -1.0;
   }
   // validate str has length
   public String valideStrLength(int min, int max, String prompt, String errorPrompt) {
@@ -38,9 +36,10 @@ public class Validate extends Input {
       return input;
     } else {
       System.out.println(errorPrompt);
-      valideStrLength(min, max, prompt, errorPrompt);
+      return valideStrLength(min, max, prompt, errorPrompt);
     }
-    return "";
   }
+
+
 
 }

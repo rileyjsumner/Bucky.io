@@ -20,9 +20,9 @@ public class DAOTest {
 
   @Test
   public void testDeleteInvalidColumnFromTable() {
-     String whereCol = "failTest";
-     String whereVal = "updateString";
-     Assert.assertEquals(false, testDAO.delete(whereCol, whereVal));
+    String whereCol = "failTest";
+    String whereVal = "updateString";
+    Assert.assertEquals(false, testDAO.delete(whereCol, whereVal));
   }
 
   @Test
@@ -54,7 +54,7 @@ public class DAOTest {
   }
 
   /**
-   * 
+   *
    */
   @Test
   public void testInsertStrWithValidString() {
