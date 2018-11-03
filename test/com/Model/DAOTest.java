@@ -394,7 +394,7 @@ public class DAOTest {
         updateTest.put("timeTest", new Time(1234567L));
         String colCheck = "failTime";
         String valCheck = "902485L";
-        Assert.assertEquals(false, testDAO.updateDTime(updateTest, colCheck, valCheck));
+        Assert.assertEquals(false, testDAO.updateTime(updateTest, colCheck, valCheck));
     }
 
     @Test
@@ -407,7 +407,7 @@ public class DAOTest {
     }
 
     @Test
-    public void testUpdateDoubleWithCheckColumnNotExist() {
+    public void testUpdateTimestampWithCheckColumnNotExist() {
         HashMap<String, Timestamp> updateTest = new HashMap<>();
         updateTest.put("timestampTest", new Timestamp(29384583475L));
         String colCheck = "failTimestamp";
