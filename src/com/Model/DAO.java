@@ -542,6 +542,13 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Update method for longs to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
   public boolean updateLong(Map<String, Long> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
@@ -567,6 +574,13 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Update method for booleans to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
   public boolean updateBoolean(Map<String, Boolean> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
@@ -592,6 +606,13 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Update method for floats to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
   public boolean updateFloat(Map<String, Float> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
@@ -617,6 +638,13 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Update method for floats to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
   public boolean updateShort(Map<String, Short> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
@@ -642,31 +670,13 @@ public class DAO {
     return false;
   }
 
-  public boolean updateBlob(Map<String, Blob> updateVals, String colCheck, String valCheck) {
-    String updateList = "";
-    PreparedStatement preparedStatement;
-    for(Map.Entry<String, Blob> entry : updateVals.entrySet()){
-      updateList = updateList.concat(entry.getKey()+" = ?,");
-    }
-    updateList = updateList.substring(0,updateList.length()-1);
-    try {
-      // UPDATE table_name SET col1 = ?, col2 = ? WHERE col3 = ?
-      preparedStatement = connection.prepareStatement("UPDATE " + table_name + " SET " + updateList + " WHERE " + colCheck +" = ?;");
-      int i = 1;
-      for(Map.Entry<String, Blob> entry : updateVals.entrySet()){
-        preparedStatement.setBlob(i, entry.getValue());
-        i++;
-      }
-      preparedStatement.setString(i, valCheck);
-      preparedStatement.execute();
-      return true;
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return false;
-  }
-
+  /**
+   * Update method for BigDecimals to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
   public boolean updateBigDecimal(Map<String, BigDecimal> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
@@ -692,6 +702,13 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Update method for Dates to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
   public boolean updateDate(Map<String, Date> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
@@ -717,6 +734,13 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Update method for Times to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
   public boolean updateTime(Map<String, Time> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
@@ -742,6 +766,13 @@ public class DAO {
     return false;
   }
 
+  /**
+   * Update method for Timestamp to be updated in the database
+   * @param updateVals column, values Hashmap to update
+   * @param colCheck column to check condition
+   * @param valCheck value to check condition
+   * @return boolean if update was successful
+   */
   public boolean updateTimestamp(Map<String, Timestamp> updateVals, String colCheck, String valCheck) {
     String updateList = "";
     PreparedStatement preparedStatement;
