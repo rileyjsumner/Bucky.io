@@ -512,7 +512,7 @@ public class DAO {
 
   /**
    * Update method for doubles to be updated in the database
-   * @param updateVals column, values Hashmap to update
+   * @param updateVals column, values HashMap to update
    * @param colCheck column to check condition
    * @param valCheck value to check condition
    * @return boolean if update was successful
@@ -544,7 +544,7 @@ public class DAO {
 
   /**
    * Update method for longs to be updated in the database
-   * @param updateVals column, values Hashmap to update
+   * @param updateVals column, values HashMap to update
    * @param colCheck column to check condition
    * @param valCheck value to check condition
    * @return boolean if update was successful
@@ -576,7 +576,7 @@ public class DAO {
 
   /**
    * Update method for booleans to be updated in the database
-   * @param updateVals column, values Hashmap to update
+   * @param updateVals column, values HashMap to update
    * @param colCheck column to check condition
    * @param valCheck value to check condition
    * @return boolean if update was successful
@@ -608,7 +608,7 @@ public class DAO {
 
   /**
    * Update method for floats to be updated in the database
-   * @param updateVals column, values Hashmap to update
+   * @param updateVals column, values HashMap to update
    * @param colCheck column to check condition
    * @param valCheck value to check condition
    * @return boolean if update was successful
@@ -640,7 +640,7 @@ public class DAO {
 
   /**
    * Update method for floats to be updated in the database
-   * @param updateVals column, values Hashmap to update
+   * @param updateVals column, values HashMap to update
    * @param colCheck column to check condition
    * @param valCheck value to check condition
    * @return boolean if update was successful
@@ -672,7 +672,7 @@ public class DAO {
 
   /**
    * Update method for BigDecimals to be updated in the database
-   * @param updateVals column, values Hashmap to update
+   * @param updateVals column, values HashMap to update
    * @param colCheck column to check condition
    * @param valCheck value to check condition
    * @return boolean if update was successful
@@ -704,7 +704,7 @@ public class DAO {
 
   /**
    * Update method for Dates to be updated in the database
-   * @param updateVals column, values Hashmap to update
+   * @param updateVals column, values HashMap to update
    * @param colCheck column to check condition
    * @param valCheck value to check condition
    * @return boolean if update was successful
@@ -736,7 +736,7 @@ public class DAO {
 
   /**
    * Update method for Times to be updated in the database
-   * @param updateVals column, values Hashmap to update
+   * @param updateVals column, values HashMap to update
    * @param colCheck column to check condition
    * @param valCheck value to check condition
    * @return boolean if update was successful
@@ -768,8 +768,8 @@ public class DAO {
 
   /**
    * Update method for Timestamp to be updated in the database
-   * @param updateVals column, values Hashmap to update
-   * @param colCheck column to check condition
+   * @param updateVals column, values HashMap to update
+   * @param colCheck column to check condition 
    * @param valCheck value to check condition
    * @return boolean if update was successful
    */
