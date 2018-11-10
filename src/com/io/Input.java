@@ -2,6 +2,7 @@ package com.io;
 
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Scanner;
 
 public class Input {
@@ -63,6 +64,35 @@ public class Input {
   public BigDecimal readBigDecimal(String prompt) {
     prompt(prompt);
     return in.nextBigDecimal();
+  }
 
+  public BigInteger readBigInteger(String prompt) {
+    prompt(prompt);
+    return in.nextBigInteger();
+  }
+
+  public boolean readBoolean(String prompt) {
+    prompt(prompt);
+    return in.nextBoolean();
+  }
+
+  public Byte readByte(String prompt) {
+    prompt(prompt);
+    return in.nextByte();
+  }
+
+  public float readFloat(String prompt) {
+    prompt(prompt);
+    return in.nextFloat();
+  }
+
+  public long readLong(String prompt) {
+    prompt(prompt);
+    return in.nextLong();
+  }
+
+  public Short readShort(String prompt) {
+    prompt(prompt);
+    return in.nextShort();
   }
 }
