@@ -42,6 +42,7 @@ public class DAO {
   /**
    * Create new entry in the database, inserts String text
    * @param insertVals Map where first index is the column, second index is the value
+   * @return boolean value if query was successful
    */
   public boolean insertStr(Map<String, String> insertVals) {
     String columnList = "";
@@ -55,7 +56,7 @@ public class DAO {
     valueList  = valueList.substring(0,valueList.length()-1);
 
     try {
-      // INSERT into table_name (col1, 11111111111123123123123123123123123123123121col2) VALUES (?, ?);
+      // INSERT into table_name (col1, col2) VALUES (?, ?);
       preparedStatement = connection.prepareStatement("INSERT INTO " + table_name + " (" + columnList + ") VALUES (" + valueList + ");");
       int i = 1;
       for(Map.Entry<String, String> entry : insertVals.entrySet()) {
