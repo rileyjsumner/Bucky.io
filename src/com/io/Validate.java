@@ -40,6 +40,16 @@ public class Validate extends Input {
     }
   }
 
+  public int intIsGreaterThan(int min, String prompt, String errorPrompt){
+    int val = readInt(prompt);
+    if(val >= min){
+      return val;
+    } else{
+      System.out.println(errorPrompt);
+      return intIsGreaterThan(min, prompt, errorPrompt);
+    }
+  }
+
 
 
 }
