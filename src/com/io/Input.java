@@ -62,7 +62,7 @@ public class Input {
 
   public BigDecimal readBigDecimal(String prompt) {
     prompt(prompt);
-    return in.nextBigDecimal()
+    return in.nextBigDecimal();
 
   }
 }
