@@ -1,5 +1,4 @@
 package com.Utility;
 
-public class Login {
-
+public class Admin {
 }
