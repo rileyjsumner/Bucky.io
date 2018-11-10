@@ -61,7 +61,7 @@ public class Validate extends Input {
   }
 
     public double doubleIsGreaterThan(double min, String prompt, String errorPrompt){
-        double val = readInt(prompt);
+        double val = readDouble(prompt);
         if(val >= min){
             return val;
         } else{
@@ -71,7 +71,7 @@ public class Validate extends Input {
     }
 
     public double doubleIsLessThan(double max, String prompt, String errorPrompt){
-        double val = readInt(prompt);
+        double val = readDouble(prompt);
         if(val <= max){
             return val;
         } else{
@@ -81,7 +81,7 @@ public class Validate extends Input {
     }
 
     public float floatIsGreaterThan(float min, String prompt, String errorPrompt){
-        float val = readInt(prompt);
+        float val = readFloat(prompt);
         if(val >= min){
             return val;
         } else{
@@ -91,7 +91,7 @@ public class Validate extends Input {
     }
 
     public float floatIsLessThan(float max, String prompt, String errorPrompt){
-        float val = readInt(prompt);
+        float val = readFloat(prompt);
         if(val <= max){
             return val;
         } else{
