@@ -16,7 +16,7 @@ public class Validate extends Input {
     if(val >= min && val <= max) {
       return val;
     } else {
-      System.out.println(errorPrompt);
+      prompt(errorPrompt);
       return validIntInRange(min, max, prompt, errorPrompt);
     }
   }
@@ -25,7 +25,7 @@ public class Validate extends Input {
     if(val >= min && val <= max) {
       return val;
     } else {
-      System.out.println(errorPrompt);
+      prompt(errorPrompt);
       return validDoubleInRange(min, max, prompt, errorPrompt);
     }
   }
@@ -35,7 +35,7 @@ public class Validate extends Input {
     if(input.length() >= min && input.length() <= max) {
       return input;
     } else {
-      System.out.println(errorPrompt);
+      prompt(errorPrompt);
       return valideStrLength(min, max, prompt, errorPrompt);
     }
   }
