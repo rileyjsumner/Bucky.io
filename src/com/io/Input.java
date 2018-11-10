@@ -1,6 +1,7 @@
 package com.io;
 
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Input {
@@ -25,7 +26,7 @@ public class Input {
    * user input - add a \n for new line
    * @param prompt Statement to ask user for input
    */
-  private void prompt(String prompt) {
+  protected void prompt(String prompt) {
     System.out.print(prompt);
   }
 
@@ -57,5 +58,11 @@ public class Input {
   public double readDouble(String prompt) {
     prompt(prompt);
     return in.nextDouble();
+  }
+
+  public BigDecimal readBigDecimal(String prompt) {
+    prompt(prompt);
+    return in.nextBigDecimal()
+
   }
 }
