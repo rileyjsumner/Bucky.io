@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 /**
@@ -813,13 +814,27 @@ public class DAO {
     columnList = columnList.substring(0,columnList.length()-1);
     try {
       // SELECT col1, col2 FROM table_name WHERE col3 = val;
-      preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + table_name + " WHERE " + whereCol + " = ?;");
+      preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + table_name + " WHERE " + ((whereCol.equals(""))?"":whereCol+ " = ") + " ?;");
       preparedStatement.setString(1, whereVal);
       resultSet = preparedStatement.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return resultSet;
+  }
+
+  public HashMap<String, Object> resultSetToHashMap(ResultSet set, ArrayList<String> columns) {
+    HashMap<String, Object> results = new HashMap<>();
+    try {
+      while (set.next()) {
+        for(String col : columns) {
+          results.put(col, set.getString(col));
+        }
+      }
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
+    return results;
   }
   public boolean delete(String whereCol, String whereVal) {
     PreparedStatement preparedStatement;
