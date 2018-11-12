@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 /**
@@ -42,6 +43,7 @@ public class DAO {
   /**
    * Create new entry in the database, inserts String text
    * @param insertVals Map where first index is the column, second index is the value
+   * @return boolean value if query was successful
    */
   public boolean insertStr(Map<String, String> insertVals) {
     String columnList = "";
@@ -55,7 +57,7 @@ public class DAO {
     valueList  = valueList.substring(0,valueList.length()-1);
 
     try {
-      // INSERT into table_name (col1, 11111111111123123123123123123123123123123121col2) VALUES (?, ?);
+      // INSERT into table_name (col1, col2) VALUES (?, ?);
       preparedStatement = connection.prepareStatement("INSERT INTO " + table_name + " (" + columnList + ") VALUES (" + valueList + ");");
       int i = 1;
       for(Map.Entry<String, String> entry : insertVals.entrySet()) {
@@ -812,13 +814,27 @@ public class DAO {
     columnList = columnList.substring(0,columnList.length()-1);
     try {
       // SELECT col1, col2 FROM table_name WHERE col3 = val;
-      preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + table_name + " WHERE " + whereCol + " = ?;");
+      preparedStatement = connection.prepareStatement("SELECT " + columnList + " FROM " + table_name + " WHERE " + ((whereCol.equals(""))?"":whereCol+ " = ") + " ?;");
       preparedStatement.setString(1, whereVal);
       resultSet = preparedStatement.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return resultSet;
+  }
+
+  public HashMap<String, Object> resultSetToHashMap(ResultSet set, ArrayList<String> columns) {
+    HashMap<String, Object> results = new HashMap<>();
+    try {
+      while (set.next()) {
+        for(String col : columns) {
+          results.put(col, set.getString(col));
+        }
+      }
+    } catch(SQLException e) {
+      e.printStackTrace();
+    }
+    return results;
   }
   public boolean delete(String whereCol, String whereVal) {
     PreparedStatement preparedStatement;

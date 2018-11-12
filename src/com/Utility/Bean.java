@@ -26,4 +26,10 @@ public class Bean {
   public void deleteField(String fieldName) {
     this.fields.remove(fieldName);
   }
+  public boolean hasField(String fieldName) {
+    return this.fields.containsKey(fieldName);
+  }
+  public boolean hasField(Object fieldValue) {
+    return this.fields.containsValue(fieldValue);
+  }
 }
