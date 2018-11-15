@@ -1,9 +1,7 @@
 package com.Utility;
 
-import com.Exception.IllegalUsernameAssignment;
 import com.Model.DAO;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
