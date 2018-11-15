@@ -1,8 +1,8 @@
-**Bucky.io**
+<h1>Bucky.io</h1>
 
-Bucky.io is a java based programming library built to develop java based applications easier.
+**Bucky.io** is a java based programming library built to develop java based applications easier.
 
-The Bucky.io library uses interfaces and inheritance to guide your web application towards a clearer project structure.
+The **Bucky.io** library uses interfaces and inheritance to guide your web application towards a clearer project structure.
 
 By using this framework, web application development processes can be streamlined, while not sacraficing customization and extendability.
 
@@ -13,10 +13,10 @@ Example implementation: Inserting data into a database
 ````
 public class myDAO {
     public static void main(String[] args) {
-        DAO newDao = new DAO();
+        DAO newDao = new DAO("table_name");
         HashMap insertVals = new HashMap<>();
         insertVals.put("column", "data");
-        newDao.insertStr("table_name", insertVals);
+        newDao.insertStr(insertVals);
     }
 }
 ````
