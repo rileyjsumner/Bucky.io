@@ -1,4 +1,4 @@
-<h1>Bucky.io</h1>
+#### Bucky.io
 
 **Bucky.io** is a java based programming library built to develop java based applications easier.
 
@@ -10,7 +10,7 @@ Bucky.io is scalable, and can easily be amended to fit the needs of your project
 
 Example implementation: Inserting data into a database
 
-````
+````java
 public class myDAO {
     public static void main(String[] args) {
         DAO newDao = new DAO("table_name");
@@ -21,4 +21,4 @@ public class myDAO {
 }
 ````
 
-By using this implementation, Bucky.io handles all the possible errors, and makes database modification easier and faster.
+By using this implementation, **Bucky.io** handles all the possible errors, and makes database modification easier and faster.
