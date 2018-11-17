@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class Login extends Bean {
   private DAO loginDAO;
+  private boolean isLogin;
   /*
   private int id;
   private String username;
@@ -27,11 +28,13 @@ public class Login extends Bean {
   public Login(HashMap<String, Object> fields, String db_table) {
     super(fields, "Login");
     this.loginDAO = new DAO(db_table);
+    this.isLogin = false;
   }
 
   /**
    * Tests database whether username already exists, returns boolean if username is valid
    * @param username is the login used by the user
+   * @param userCol is the column which contains the username
    * @return boolean if username is available
    */
   public boolean verifyUsername(String username, String userCol)  {
@@ -50,6 +53,16 @@ public class Login extends Bean {
     return new String(Base64.getDecoder().decode(value));
   }
 
+  /**
+   * The createUser method creates a user from the given information and inserts that data into the
+   * database
+   * @param userInfo is a HashMap containing information about the users to be inserted into the
+   * database
+   * @return boolean if user creation was successful
+   */
+  public boolean createUser(HashMap<String, String> userInfo) {
+    return loginDAO.insertStr(userInfo);
+  }
 
 
 
