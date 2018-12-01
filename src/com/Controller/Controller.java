@@ -48,15 +48,33 @@ public class Controller extends HttpServlet {
       e.printStackTrace();
     }
   }
-  // get parameter
+
+  /**
+   * Gets a parameter from the servlet
+   * @param request servlet request
+   * @param param name to return
+   * @return value of requested parameter
+   */
   public static String getParam(HttpServletRequest request, String param) {
     return request.getParameter(param);
   }
-  // set attribute
+
+  /**
+   * Sets an attribute to the session
+   * @param session current user session
+   * @param attrName name of attribute
+   * @param attrValue value of attribute
+   */
   public static void setAttr(HttpSession session, String attrName, Object attrValue) {
     session.setAttribute(attrName, attrValue);
   }
 
+  /**
+   * Gets an attribute from the session
+   * @param session current user session
+   * @param attrName name of attribute to get
+   * @return value of attribute
+   */
   public static Object getAttr(HttpSession session, String attrName) {
     return session.getAttribute(attrName);
   }

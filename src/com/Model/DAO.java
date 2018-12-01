@@ -823,6 +823,12 @@ public class DAO {
     return resultSet;
   }
 
+  /**
+   * Converts a ResultSet of a query to a HashMap
+   * @param set query results
+   * @param columns columns to include in HashMap
+   * @return HashMap with results contained
+   */
   public HashMap<String, Object> resultSetToHashMap(ResultSet set, ArrayList<String> columns) {
     HashMap<String, Object> results = new HashMap<>();
     try {
@@ -836,6 +842,13 @@ public class DAO {
     }
     return results;
   }
+
+  /**
+   * Delete information from the database
+   * @param whereCol condition where column
+   * @param whereVal condition where value
+   * @return boolean if successful
+   */
   public boolean delete(String whereCol, String whereVal) {
     PreparedStatement preparedStatement;
 
@@ -850,6 +863,11 @@ public class DAO {
     }
     return false;
   }
+
+  /**
+   * Empties the table
+   * @return boolean if successful
+   */
   public boolean clearTable() {
     return this.delete("", "1");
   }

@@ -61,36 +61,71 @@ public class Input {
     return in.nextDouble();
   }
 
+  /**
+   * Requests a BigDecimal keyboard input from user
+   * @param prompt statement to ask user for input
+   * @return input BigDecimal from user
+   */
   public BigDecimal readBigDecimal(String prompt) {
     prompt(prompt);
     return in.nextBigDecimal();
   }
 
+  /**
+   * Requests a BigInteger keyboard input from user
+   * @param prompt statement to ask user for input
+   * @return input BigInteger from user
+   */
   public BigInteger readBigInteger(String prompt) {
     prompt(prompt);
     return in.nextBigInteger();
   }
 
+  /**
+   * Requests a boolean keyboard input from user
+   * @param prompt statement to ask user for input
+   * @return input boolean from user
+   */
   public boolean readBoolean(String prompt) {
     prompt(prompt);
     return in.nextBoolean();
   }
 
+  /**
+   * Requests a Byte keyboard input from user
+   * @param prompt statement to ask user for input
+   * @return input Byte from user
+   */
   public Byte readByte(String prompt) {
     prompt(prompt);
     return in.nextByte();
   }
 
+  /**
+   * Requests a float keyboard input from user
+   * @param prompt statement to ask user for input
+   * @return input float from user
+   */
   public float readFloat(String prompt) {
     prompt(prompt);
     return in.nextFloat();
   }
 
+  /**
+   * Requests a long keyboard input from user
+   * @param prompt statement to ask user for input
+   * @return input long from user
+   */
   public long readLong(String prompt) {
     prompt(prompt);
     return in.nextLong();
   }
 
+  /**
+   * Requests a short keyboard input from user
+   * @param prompt statement to ask user for input
+   * @return input double from user
+   */
   public Short readShort(String prompt) {
     prompt(prompt);
     return in.nextShort();
