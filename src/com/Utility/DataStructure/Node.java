@@ -35,8 +35,11 @@ public class Node<T> {
   protected Node<T> getNext() {
     return this.left;
   }
-  protected void setNext(T data) {
-    this.left = new Node<>(null, data);
+  protected void setNext(Node<T> next, T data) {
+    this.left = new Node<>(next, data);
+  }
+  protected void setNext(Node<T> next) {
+    this.left = next;
   }
   protected T getData() {
     return this.data;
