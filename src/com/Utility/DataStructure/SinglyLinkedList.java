@@ -5,6 +5,37 @@ public class SinglyLinkedList<T> {
   private Node<T> head;
   private int size;
 
+  private class Node<T> {
+    private T data;
+    private Node<T> next;
+
+    private Node() {
+      this.data = null;
+      this.next = null;
+    }
+
+    private Node(Node<T> next, T data) {
+      this.next = next;
+      this.data = data;
+    }
+
+    private Node<T> getNext() {
+      return this.next;
+    }
+
+    private void setNext(Node<T> next) {
+      this.next = next;
+    }
+    private void setNext(Node<T> next, T data) {
+      this.next = next;
+      this.data = data;
+    }
+
+    private T getData() {
+      return this.data;
+    }
+  }
+
   /**
    * Empty constructor for SinglyLinkedList<T>, initializes an
    * empty head element
