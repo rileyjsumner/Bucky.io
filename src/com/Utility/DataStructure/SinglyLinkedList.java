@@ -131,6 +131,11 @@ public class SinglyLinkedList<T> {
     size--;
   }
 
+  public void clear() {
+    this.size = 0;
+    this.head = null;
+  }
+
   /**
    * Accessor method for size field
    * @return size of list
