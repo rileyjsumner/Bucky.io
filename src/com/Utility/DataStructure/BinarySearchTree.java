@@ -46,6 +46,10 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
       return this.key;
     }
 
+    private V getValue() {
+      return this.value;
+    }
+
     private void setLeft(Node<K,V> node) {
       this.left = node;
     }
@@ -81,6 +85,19 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
       node.setRight(insertHelper(node.getRight(), key, value));
     }
     return node;
+  }
+
+  public V get(K key) {
+    return getHelper(root, key);
+  }
+
+  private V getHelper(Node<K,V> node, K key) {
+    if(node.getKey().compareTo(key) > 0) {
+      return getHelper(node.getLeft(), key);
+    } else if(node.getKey().compareTo(key) < 0) {
+      return getHelper(node.getRight(), key);
+    }
+    return node.getValue();
   }
 
   public boolean contains(K key) {

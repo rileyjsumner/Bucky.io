@@ -1,6 +1,6 @@
 package com.Utility.DataStructure;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T> extends List<T> {
 
   private Node<T> head;
   private int size;
@@ -129,27 +129,6 @@ public class SinglyLinkedList<T> {
       }
     }
     size--;
-  }
-
-  public void clear() {
-    this.size = 0;
-    this.head = null;
-  }
-
-  /**
-   * Accessor method for size field
-   * @return size of list
-   */
-  public int getSize() {
-    return size;
-  }
-
-  /**
-   * Boolean if the size of the list is 0
-   * @return true if empty
-   */
-  public boolean isEmpty() {
-    return size == 0;
   }
 
 }
