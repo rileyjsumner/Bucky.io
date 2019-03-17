@@ -1,7 +1,10 @@
 package com.Model;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -15,8 +18,18 @@ public class DAOTest {
   // DELETE col FROM table WHERE colcheck = valcheck;
   // SELECT col FROM tabERE colcheck = valcheck;
 
-  private final String TABLE_NAME = "test";
-  private DAO testDAO = new DAO(TABLE_NAME);
+  private DAO testDAO;
+  private String TABLE_NAME;
+  @BeforeEach
+  public void setup() throws Exception {
+    TABLE_NAME = "test";
+    testDAO = new DAO(TABLE_NAME);
+  }
+
+  @AfterEach
+  public void tearDown() throws Exception {
+    testDAO = null;
+  }
 
   @Test
   public void testDeleteInvalidColumnFromTable() {

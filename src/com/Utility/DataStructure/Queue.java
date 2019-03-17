@@ -1,4 +1,4 @@
 package com.Utility.DataStructure;
 
-public class Queue {
+public class Queue<T> implements ListADT<T> {
 }

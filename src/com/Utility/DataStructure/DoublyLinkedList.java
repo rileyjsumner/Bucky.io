@@ -2,7 +2,7 @@ package com.Utility.DataStructure;
 
 import com.Exception.KeyNotFoundException;
 
-public class DoublyLinkedList<T> {
+public class DoublyLinkedList<T> extends LinkedList<T> implements ListADT<T> {
 
   private Node<T> head;
 
@@ -89,18 +89,4 @@ public class DoublyLinkedList<T> {
     }
   }
 
-  public boolean contains(T data) {
-    Node<T> node = head;
-    if(node == null) {
-      return false;
-    } else {
-      while(node.getNext() != null) {
-        if(node.getData().equals(data)) {
-          return true;
-        }
-        node = node.getNext();
-      }
-    }
-    return false;
-  }
 }
