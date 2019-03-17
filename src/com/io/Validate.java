@@ -155,9 +155,19 @@ public class Validate extends Input {
       float val = readFloat(prompt);
       if(val <= max){
           return val;
-      } else{
+      } else {
           prompt(errorPrompt);
           return floatIsLessThan(max, prompt, errorPrompt);
       }
+  }
+
+  public String strContains(CharSequence strContain, String prompt, String errorPrompt) {
+    String str = readStr(prompt);
+    if(str.contains(strContain)) {
+      return str;
+    } else {
+      prompt(errorPrompt);
+      return strContains(strContain, prompt, errorPrompt);
+    }
   }
 }

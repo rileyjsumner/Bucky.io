@@ -14,6 +14,14 @@ public class View {
 
     private JFrame frame;
 
+    public View() {
+        this.title = null;
+        this.width = -1;
+        this.height = -1;
+
+        this.frame = null;
+    }
+
     public View(String title, int width, int height) {
         this.title = title;
         this.width = width;
