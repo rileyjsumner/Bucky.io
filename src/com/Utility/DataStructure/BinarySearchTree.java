@@ -2,10 +2,10 @@ package com.Utility.DataStructure;
 
 import com.Exception.DuplicateKeyException;
 
-public class BinarySearchTree<K extends Comparable<K>, V> {
+public class BinarySearchTree<K extends Comparable<K>,V> implements SearchTreeADT<K,V> {
 
   private Node<K,V> root;
-  private SinglyLinkedList<K> traversal;
+  private LinkedList<K> traversal;
 
   private class Node<K,V> {
 
@@ -60,12 +60,12 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 
   public BinarySearchTree() {
     this.root = null;
-    this.traversal = new SinglyLinkedList<>();
+    this.traversal = new LinkedList<>();
   }
 
   public BinarySearchTree(Node<K,V> root) {
     this.root = root;
-    this.traversal = new SinglyLinkedList<>();
+    this.traversal = new LinkedList<>();
   }
 
   public void insert(K key, V value) throws DuplicateKeyException {
@@ -117,7 +117,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     }
   }
 
-  public SinglyLinkedList<K> inOrderTraversal() { // LVR
+  public LinkedList<K> inOrderTraversal() { // LVR
     traversal.clear();
     inOrderTraversalHelper(root);
     return traversal;
@@ -131,7 +131,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     inOrderTraversalHelper(node.getRight());
   }
 
-  public SinglyLinkedList<K> preOrderTraversal() {
+  public LinkedList<K> preOrderTraversal() {
     traversal.clear();
     preOrderTraversalHelper(root);
     return traversal;
@@ -145,7 +145,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     traversal.add(node.getKey());
   }
 
-  public SinglyLinkedList<K> postOrderTraversal() {
+  public LinkedList<K> postOrderTraversal() {
     traversal.clear();
     postOrderTraversalHelper(root);
     return traversal;
@@ -159,7 +159,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     preOrderTraversalHelper(node.getRight());
   }
 
-  public SinglyLinkedList<K> levelOrderTraversal() {
+  public LinkedList<K> levelOrderTraversal() {
     traversal.clear();
     int height = getHeight();
     for (int i = 1; i <= height; i++) {

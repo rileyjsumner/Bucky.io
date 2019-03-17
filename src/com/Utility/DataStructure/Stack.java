@@ -1,6 +1,6 @@
 package com.Utility.DataStructure;
 
-public class Stack<T> extends List<T> {
+public class Stack<T> extends LinkedList<T> implements ListADT<T> {
 
   private Node<T> head;
 

@@ -2,7 +2,7 @@ package com.Utility.DataStructure;
 
 import com.Exception.KeyNotFoundException;
 
-public class DoublyLinkedList<T> extends List<T> {
+public class DoublyLinkedList<T> extends LinkedList<T> implements ListADT<T> {
 
   private Node<T> head;
 

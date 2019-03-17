@@ -1,6 +1,6 @@
 package com.Utility.DataStructure;
 
-public class AVLTree<K extends Comparable<K>,V> extends BinarySearchTree<K,V> {
+public class AVLTree<K extends Comparable<K>,V> extends BinarySearchTree<K,V> implements SearchTreeADT<K,V> {
 
   public Node<K,V> root;
 

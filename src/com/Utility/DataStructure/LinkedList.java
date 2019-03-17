@@ -1,11 +1,14 @@
 package com.Utility.DataStructure;
 
-public class SinglyLinkedList<T> extends List<T> {
+import com.Exception.KeyNotFoundException;
+
+public class LinkedList<T> implements ListADT<T> {
 
   private Node<T> head;
   private int size;
 
   private class Node<T> {
+
     private T data;
     private Node<T> next;
 
@@ -15,32 +18,36 @@ public class SinglyLinkedList<T> extends List<T> {
     }
 
     private Node(Node<T> next, T data) {
+      this.data = data;
       this.next = next;
+    }
+
+    private T getData() {
+      return data;
+    }
+
+    private void setData(T data) {
       this.data = data;
     }
 
     private Node<T> getNext() {
-      return this.next;
+      return next;
     }
 
     private void setNext(Node<T> next) {
       this.next = next;
     }
+
     private void setNext(Node<T> next, T data) {
       this.next = next;
       this.data = data;
     }
-
-    private T getData() {
-      return this.data;
-    }
   }
-
   /**
    * Empty constructor for SinglyLinkedList<T>, initializes an
    * empty head element
    */
-  public SinglyLinkedList() {
+  public LinkedList() {
     this.head = null;
     size = 0;
   }
@@ -50,7 +57,7 @@ public class SinglyLinkedList<T> extends List<T> {
    * with empty next element
    * @param data value to store in head node
    */
-  public SinglyLinkedList(T data) {
+  public LinkedList(T data) {
     this.head = new Node<>(null, data);
     size = 1;
   }
@@ -94,7 +101,10 @@ public class SinglyLinkedList<T> extends List<T> {
    * Remove an element from the linkedList
    * @param data to remove
    */
-  public void remove(T data) {
+  public void remove(T data) throws KeyNotFoundException {
+    if(!contains(data)) {
+      throw new KeyNotFoundException();
+    }
     Node<T> current = head;
     Node<T> previous = null;
     while(current.getNext() != null) {
@@ -131,4 +141,39 @@ public class SinglyLinkedList<T> extends List<T> {
     size--;
   }
 
+  public boolean contains(T data) {
+    Node<T> node = head;
+    if(node == null) {
+      return false;
+    } else {
+      while(node.getNext() != null) {
+        if(node.getData().equals(data)) {
+          return true;
+        }
+        node = node.getNext();
+      }
+    }
+    return false;
+  }
+
+  public void clear() {
+    this.size = 0;
+    this.head = null;
+  }
+
+  /**
+   * Accessor method for size field
+   * @return size of list
+   */
+  public int getSize() {
+    return size;
+  }
+
+  /**
+   * Boolean if the size of the list is 0
+   * @return true if empty
+   */
+  public boolean isEmpty() {
+    return size == 0;
+  }
 }

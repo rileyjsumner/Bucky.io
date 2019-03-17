@@ -4,7 +4,7 @@ import com.Exception.DuplicateKeyException;
 
 import java.awt.Color;
 
-public class RedBlackTree<K extends Comparable<K>,V> extends BinarySearchTree<K,V> {
+public class RedBlackTree<K extends Comparable<K>,V> extends BinarySearchTree<K,V> implements SearchTreeADT<K,V> {
 
   private Node<K,V> root;
 
