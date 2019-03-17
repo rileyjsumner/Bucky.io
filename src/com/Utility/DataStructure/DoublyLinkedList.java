@@ -1,5 +1,7 @@
 package com.Utility.DataStructure;
 
+import com.Exception.KeyNotFoundException;
+
 public class DoublyLinkedList<T> {
 
   private Node<T> head;
@@ -35,6 +37,14 @@ public class DoublyLinkedList<T> {
     private void setNext(Node<T> node) {
       this.next = node;
     }
+
+    private T getData() {
+      return this.data;
+    }
+
+    private void setPrevious(Node<T> node) {
+      this.previous = node;
+    }
   }
 
   public DoublyLinkedList() {
@@ -55,5 +65,42 @@ public class DoublyLinkedList<T> {
       }
       node.setNext(new Node<>(data, node, null));
     }
+  }
+
+  public void remove(T data) throws KeyNotFoundException {
+    if(!contains(data)) {
+      throw new KeyNotFoundException();
+    }
+    Node<T> node = head;
+    Node<T> prev = null;
+    if(node != null) {
+      while(node.getNext() != null) {
+        if(node.getData().equals(data)) {
+          if(prev == null) {
+            head = node.getNext();
+          } else {
+            prev.setNext(node.getNext());
+            node.getNext().setPrevious(prev);
+          }
+        }
+        prev = node;
+        node = node.getNext();
+      }
+    }
+  }
+
+  public boolean contains(T data) {
+    Node<T> node = head;
+    if(node == null) {
+      return false;
+    } else {
+      while(node.getNext() != null) {
+        if(node.getData().equals(data)) {
+          return true;
+        }
+        node = node.getNext();
+      }
+    }
+    return false;
   }
 }
