@@ -165,7 +165,7 @@ public class LinkedList<T> implements ListADT<T> {
    * Accessor method for size field
    * @return size of list
    */
-  public int getSize() {
+  public int size() {
     return size;
   }
 

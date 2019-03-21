@@ -1,11 +1,13 @@
 package com.Utility.DataStructure;
 
 import com.Exception.DuplicateKeyException;
+import com.Exception.KeyNotFoundException;
 
 public class BinarySearchTree<K extends Comparable<K>,V> implements SearchTreeADT<K,V> {
 
   private Node<K,V> root;
   private LinkedList<K> traversal;
+  private int size;
 
   private class Node<K,V> {
 
@@ -56,16 +58,21 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements SearchTreeAD
     private void setRight(Node<K,V> node) {
       this.right = node;
     }
+    private void setKey(K key) {
+      this.key = key;
+    }
   }
 
   public BinarySearchTree() {
     this.root = null;
     this.traversal = new LinkedList<>();
+    this.size = 0;
   }
 
   public BinarySearchTree(Node<K,V> root) {
     this.root = root;
     this.traversal = new LinkedList<>();
+    this.size = 0;
   }
 
   public void insert(K key, V value) throws DuplicateKeyException {
@@ -73,6 +80,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements SearchTreeAD
       throw new DuplicateKeyException();
     }
     root = insertHelper(root, key, value);
+    size++;
   }
 
   private Node<K,V> insertHelper(Node<K,V> node, K key, V value) {
@@ -85,6 +93,27 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements SearchTreeAD
       node.setRight(insertHelper(node.getRight(), key, value));
     }
     return node;
+  }
+
+  public void remove(K key) throws KeyNotFoundException {
+    if(!contains(key)) {
+      throw new KeyNotFoundException();
+    }
+    root = removeHelper(root, key);
+  }
+
+  private Node<K,V> removeHelper(Node<K,V> node, K key) {
+    if(node.getKey().compareTo(key) > 0) {
+      node.setLeft(removeHelper(node.getLeft(), key));
+    } else if(node.getKey().compareTo(key) < 0) {
+      node.setRight(removeHelper(node.getRight(), key));
+    }
+    node.setKey(getInOrderPredecessor(key).getKey());
+    return node;
+  }
+
+  private Node<K,V> getInOrderPredecessor(K key) {
+    return root;
   }
 
   public V get(K key) {
@@ -161,7 +190,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements SearchTreeAD
 
   public LinkedList<K> levelOrderTraversal() {
     traversal.clear();
-    int height = getHeight();
+    int height = height();
     for (int i = 1; i <= height; i++) {
       levelOrderTraversalHelper(root, i);
     }
@@ -180,7 +209,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements SearchTreeAD
 
   }
 
-  public int getHeight() {
+  public int height() {
     return getHeightHelper(root);
   }
 
@@ -192,6 +221,14 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements SearchTreeAD
     int rightHeight = getHeightHelper(node.getRight());
 
     return ((leftHeight > rightHeight) ? leftHeight : rightHeight) + 1;
+  }
+
+  public boolean isEmpty() {
+    return size == 0;
+  }
+
+  public int getSize() {
+    return size;
   }
 
 }
