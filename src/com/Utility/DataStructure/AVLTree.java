@@ -54,8 +54,14 @@ public class AVLTree<K extends Comparable<K>,V> extends BinarySearchTree<K,V> im
     insertHelper(root, key, value);
   }
 
-  private void insertHelper(Node<K,V> node, K key, V value) {
+  private Node<K,V> insertHelper(Node<K,V> node, K key, V value) {
+    if(node.getKey().compareTo(key) > 0) {
+      node.setLeft(insertHelper(node.getLeft(), key, value));
 
+    } else if(node.getKey().compareTo(key) < 0) {
+      node.setRight(insertHelper(node.getRight(), key, value));
+    }
+    return node;
   }
 
   public void remove(K key) {
